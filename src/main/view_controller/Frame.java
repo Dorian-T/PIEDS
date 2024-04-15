@@ -9,13 +9,18 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.model.Case;
+import main.model.Direction;
+
 
 public class Frame extends JFrame implements Observer {
 	private static final int W = 16;
 	private static final int H = 9;
 	private JPanel[][] tabC;
+	private Case c;
 
-	public Frame() {
+	public Frame(Case c) {
+		this.c = c;
 		build();
 		addKeyboardListener();
 		tabC = new JPanel[H][W];
@@ -38,10 +43,12 @@ public class Frame extends JFrame implements Observer {
 
 	private void addKeyboardListener() {
 		addKeyListener(new KeyAdapter() {
+			@Override
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
 						System.out.println("LEFT"); // TODO: remove debug output
+						c.move(Direction.LEFT);
 						break;
 				}
 			}
