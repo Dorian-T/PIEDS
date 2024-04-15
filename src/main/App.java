@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.Frame;
-
 import main.model.*;
 import main.view_controller.*;
 
