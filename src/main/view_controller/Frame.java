@@ -21,9 +21,11 @@ public class Frame extends JFrame implements Observer {
 
 	public Frame(Case c) {
 		this.c = c;
+		tabC = new JPanel[H][W];
+		
 		build();
 		addKeyboardListener();
-		tabC = new JPanel[H][W];
+		
 	}
 
 	private void build() {
