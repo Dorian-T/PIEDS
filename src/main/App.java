@@ -10,7 +10,7 @@ public class App {
         Frame f = new Frame(c);
         c.addObserver(f);
         c.begin();
-        f.setSize(800,450);
         f.setVisible(true);
+        
     }
 }

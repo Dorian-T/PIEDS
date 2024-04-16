@@ -41,6 +41,8 @@ public class Frame extends JFrame implements Observer {
 				jpC.add(tabC[y][x]);
 			}
 		}
+        setSize(800,450);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 	private void addKeyboardListener() {
