@@ -2,31 +2,31 @@ package main.model;
 
 import java.util.Map;
 
-public class GrilleJeu {
+public class GridGame {
 
 	private Player p;
-	private Case [][] tab;
-	private Map<Case, Point> allPoint; //meme chose que tab donc doit etre MAJ en meme temps
+	private Cell [][] tab;
+	private Map<Cell, Point> allPoint; //Same thing as tab, so it needs to be updated at the same time
 	
 	public void move(Entity entity, Direction dir) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public void getPosition(Entity e) {
-		
+	public Point getPosition(Entity e) {
+		return null;
 	}
 	
 	public void seDeplacer(Entity e, Direction dir) {
 		Point pe = getPosition(e);
-		Case cible = getCible(pe,dir);
+		Cell cible = getCible(pe,dir);
 		cible.entrer(e);
 		//setChange();
 		//notifyObserver(...);
 	}
 	
-	public Case getCible( Point pe, Direction dir) {
-		return new Case;
+	public Cell getCible( Point pe, Direction dir) {
+		return null;
 	}
 
 }
