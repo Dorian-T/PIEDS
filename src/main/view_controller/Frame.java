@@ -30,15 +30,15 @@ public class Frame extends JFrame implements Observer {
 
 	private void build() {
 		JPanel jp = new JPanel(new BorderLayout());
-		JPanel jpC = new JPanel(new GridLayout(W, H));
+		JPanel jpC = new JPanel(new GridLayout(H, W));
 		JPanel jpInfo = new JPanel();
 		jp.add(jpC, BorderLayout.CENTER);
 		jp.add(jpInfo, BorderLayout.EAST);
 		add(jp);
-		for(int j = 0; j < W; j++) {
-				for(int i = 0; i < H; i++) {
-				tabC[i][j] = new JPanel();
-				jpC.add(tabC[i][j]);
+		for(int y = 0; y < H; y++) {
+			for(int x = 0; x < W; x++) {
+				tabC[y][x] = new JPanel();
+				jpC.add(tabC[y][x]);
 			}
 		}
 	}
@@ -47,7 +47,7 @@ public class Frame extends JFrame implements Observer {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				tabC[c.getX()][c.getY()].setBackground(Color.LIGHT_GRAY);
+				tabC[c.getY()][c.getX()].setBackground(Color.LIGHT_GRAY);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
 						System.out.println("LEFT"); // TODO: remove debug output
@@ -66,7 +66,7 @@ public class Frame extends JFrame implements Observer {
 						c.move(Direction.DOWN);
 						break;
 				}
-				tabC[c.getX()][c.getY()].setBackground(Color.YELLOW);
+				tabC[c.getY()][c.getX()].setBackground(Color.YELLOW);
 			}
 		});
 		requestFocus();
@@ -74,12 +74,12 @@ public class Frame extends JFrame implements Observer {
 
 	@Override
 	public void update(java.util.Observable o, Object arg) {
-		for(int i = 0; i < tabC.length; i++) {
-			for(int j = 0; j < tabC[i].length; j++) {
-				if(i == c.getX() && j == c.getY()) {
-					tabC[i][j].setBackground(Color.LIGHT_GRAY);
+		for(int y = 0; y < tabC.length; y++) {
+			for(int x = 0; x < tabC[y].length; x++) {
+				if(y == c.getY() && x == c.getX()) {
+					tabC[y][x].setBackground(Color.LIGHT_GRAY);
 				}else {
-					tabC[i][j].setBackground(Color.CYAN);
+					tabC[y][x].setBackground(Color.CYAN);
 				}
 			}
 		}
