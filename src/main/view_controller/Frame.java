@@ -10,7 +10,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import main.model.Case;
+import main.model.Cell;
 import main.model.Direction;
 
 
@@ -18,9 +18,9 @@ public class Frame extends JFrame implements Observer {
 	private static final int W = 16;
 	private static final int H = 9;
 	private JPanel[][] tabC;
-	private Case c;
+	private Cell c;
 
-	public Frame(Case c) {
+	public Frame(Cell c) {
 		this.c = c;
 		tabC = new JPanel[H][W];
 		build();

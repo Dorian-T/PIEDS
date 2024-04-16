@@ -3,13 +3,13 @@ package main.model;
 import java.awt.Frame;
 import java.util.Observable;
 
-public class Case extends Observable{
+public class Cell extends Observable{
 	int x;
 	int y;
 	
 	Entity occupant;
 
-	public Case(int x, int y) {
+	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
