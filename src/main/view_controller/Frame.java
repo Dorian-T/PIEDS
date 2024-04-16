@@ -1,6 +1,7 @@
 package main.view_controller;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -22,7 +23,6 @@ public class Frame extends JFrame implements Observer {
 	public Frame(Case c) {
 		this.c = c;
 		tabC = new JPanel[H][W];
-		
 		build();
 		addKeyboardListener();
 		
@@ -35,8 +35,8 @@ public class Frame extends JFrame implements Observer {
 		jp.add(jpC, BorderLayout.CENTER);
 		jp.add(jpInfo, BorderLayout.EAST);
 		add(jp);
-		for(int i = 0; i < H; i++) {
-			for(int j = 0; j < W; j++) {
+		for(int j = 0; j < W; j++) {
+				for(int i = 0; i < H; i++) {
 				tabC[i][j] = new JPanel();
 				jpC.add(tabC[i][j]);
 			}
@@ -47,12 +47,26 @@ public class Frame extends JFrame implements Observer {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				tabC[c.getX()][c.getY()].setBackground(Color.LIGHT_GRAY);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
 						System.out.println("LEFT"); // TODO: remove debug output
 						c.move(Direction.LEFT);
 						break;
+					case KeyEvent.VK_RIGHT:
+						System.out.println("RIGHT"); // TODO: remove debug output
+						c.move(Direction.RIGHT);
+						break;
+					case KeyEvent.VK_UP:
+						System.out.println("UP"); // TODO: remove debug output
+						c.move(Direction.UP);
+						break;
+					case KeyEvent.VK_DOWN:
+						System.out.println("DOWN"); // TODO: remove debug output
+						c.move(Direction.DOWN);
+						break;
 				}
+				tabC[c.getX()][c.getY()].setBackground(Color.YELLOW);
 			}
 		});
 		requestFocus();
@@ -60,6 +74,14 @@ public class Frame extends JFrame implements Observer {
 
 	@Override
 	public void update(java.util.Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		for(int i = 0; i < tabC.length; i++) {
+			for(int j = 0; j < tabC[i].length; j++) {
+				if(i == c.getX() && j == c.getY()) {
+					tabC[i][j].setBackground(Color.LIGHT_GRAY);
+				}else {
+					tabC[i][j].setBackground(Color.CYAN);
+				}
+			}
+		}
 	}
 }
