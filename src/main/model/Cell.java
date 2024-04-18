@@ -36,18 +36,41 @@ public class Cell extends Observable{
 		notifyObservers();
 	}
 
-	public void entrer(Entity e) {
-		// TODO Auto-generated method stub
-		
+	public boolean enter(Entity e, Direction dir) {
+		if(occupant == null) {
+			//depl(e);
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
-	public void quitter(Entity e) {
+	public boolean quit(Entity e) {
 		// TODO Auto-generated method stub
-		
+		//euh ça ressemble a enter ? on fait quitter dans une direction depuis enter ?
+		return true;
 	}
 	
 	public void begin() {
 		setChanged();
 		notifyObservers();
+	}
+	
+	public static Cell loadCell(char c, int x, int y) {
+		Cell res = null;
+		switch(c) {
+			case 'w':
+				res = new Wall(x, y);
+				break;
+			default:
+				System.out.println("Erreur de charactere impossible");
+				break;
+		}
+		return res;
+	}
+
+	public Entity getOccupant() {
+		// TODO Auto-generated method stub
+		return occupant;
 	}
 }

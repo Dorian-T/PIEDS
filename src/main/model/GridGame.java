@@ -28,7 +28,7 @@ public class GridGame {
                 		tab[row][col] = Cell.loadCell(valuesC[col].charAt(0), row, col);
                 	}
                 	if(valuesE[col] != ".") {
-                		tab[row][col].enter(Entity.loadEntity(valuesE[col].charAt(0)));
+                		tab[row][col].enter(Entity.loadEntity(valuesE[col].charAt(0)), Direction.RIGHT);
                 	}
                 	
                 }

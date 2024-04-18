@@ -7,11 +7,11 @@ public abstract class Entity {
 	}
 	
 	public void moveTo(Cell c , Direction dir) {
-		Entity e = c.getEntity();
+		Entity e = c.getOccupant();
 		if(e != null) {
-			e.push();
+			//e.push();
 		}
-		c.entrer(this.d);
+		c.enter(this, dir);
 	}
 	
 	public static Entity loadEntity(char c) {
