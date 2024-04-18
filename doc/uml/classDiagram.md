@@ -7,33 +7,31 @@ classDiagram
 		+main() void
 	}
 
-	class Block {
-		+move(Direction d) void
+	class Box {
+		-Color color
+	}
+
+	class BoxButton {
+		-Color color
+		-win() void
+	}
+
+	class Button {
+		List~Activable~ a
 	}
 
 	class Cell {
-		+come(Entity e) void
+		-Entity e
+		+come(Entity e) bool
 		+leave(Entity e) void
 	}
 
-	class Direction {
-		<<enum>>
-		+UP
-		+DOWN
-		+LEFT
-		+RIGHT
+	class Door {
+		-bool active
 	}
 
 	class Entity {
-		+move() void
-	}
-
-	class Game {
-
-	}
-
-	class Grid {
-
+		+move(Direction d) void
 	}
 
 	class Frame {
@@ -41,6 +39,10 @@ classDiagram
 		-build() void
 		addKeyboardListener() void
 		+update() void
+	}
+
+	class Game {
+
 	}
 
 	class Grid {
@@ -53,22 +55,55 @@ classDiagram
 
 	}
 
-	class Moveable {
-		<<interface>>
-		+move(Direction d) void
-	}
-
-	class ObjetBlock {
-		+move() void
+	class Lever {
+		List~Activable~ a
 	}
 
 	class Player {
-		+move() void
+
 	}
 
 	class Point {
 		-x int
 		-y int
+	}
+
+	class Wall {
+
+	}
+
+
+	%% Enums
+
+	class Direction {
+		<<enum>>
+		+UP
+		+DOWN
+		+LEFT
+		+RIGHT
+	}
+
+	class Color {
+		<<enum>>
+		+RED
+		+ORANGE
+		+YELLOW
+		+GREEN
+		+BLUE
+		+PURPLE
+	}
+
+
+	%% Interfaces
+
+	class Activable {
+		+activate() void
+		+deactivate() void
+	}
+
+	class Activator {
+		+activate(List~Activable~ a) void
+		+deactivate(List~Activable~ a) void
 	}
 
 
@@ -80,10 +115,21 @@ classDiagram
 	Level "1" *--> Grid
 	Level "1..n" *--> Entity
 	Grid "1..n" *--> Cell
+	Cell "0..1" o--> Entity
+	Cell <|-- BoxButton
+	Cell <|-- Door
+	Cell <|-- Button
+	Cell <|-- Lever
+	Cell <|-- Wall
+	Entity --> Direction
+	Entity <|-- Box
 	Entity <|-- Player
-	Entity <|-- Block
-	Moveable <|-- Player
-	Block <|-- ObjetBlock
+	Box "1" *--> Color
+	BoxButton "1" *--> Color
+
+	Activator <|-- Button
+	Activator <|-- Lever
+	Activable <|-- Door
 
 
 	%% Styles
@@ -98,7 +144,6 @@ classDiagram
 	style Entity fill: #66a3ff
 	style Frame fill: #f53df5
 	style Grid fill: #66a3ff
-	style ObjetBlock fill: #66a3ff
 	style Player fill: #66a3ff
 	style Point fill: #66a3ff
 ```
