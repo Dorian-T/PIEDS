@@ -7,9 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 
-import main.model.Direction;
-import main.model.Entity;
-import main.model.Point;
+import main.model.grid.Direction;
+import main.model.entity.Entity;
+import main.model.grid.Point;
 import main.model.entity.Player;
 import main.model.grid.cell.Cell;
 
@@ -19,6 +19,7 @@ public class GridGame {
 	private Player p;
 	private Cell [][] tab;
 	private Map<Cell, Point> allPoint; //Same thing as tab, so it needs to be updated at the same time
+	private Player heros;
 	
 	public GridGame(int x, int y, File levelCells, File levelEntities) throws IOException {
 		tab = new Cell[y][x];
@@ -60,14 +61,16 @@ public class GridGame {
 	public void seDeplacer(Entity e, Direction dir) {
 		Point pe = getPosition(e);
 		Cell cible = getCible(pe,dir);
-		cible.enter(e);
+		cible.enter(e, dir);
 		//setChange();
 		//notifyObserver(...);
 	}
 	
 	public void moveHero(Direction d) {
-		Cell cCible = getCible(heros,d);
-		h.moveTo(cCible, d);
+		Cell cCible = getCible(getPosition(heros),d);
+		heros.moveTo(cCible, d);
+		//setChange();
+		//notifyObserver(...);
 	}
 	
 	public Cell getCible( Point pe, Direction dir) {

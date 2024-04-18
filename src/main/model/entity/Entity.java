@@ -9,9 +9,10 @@ import main.model.grid.GridGame;
 
 public abstract class Entity {
 	GridGame gj;
-	public void move(Direction dir) {
+	
+	/*public void move(Direction dir) {
 		gj.move(this, dir);
-	}
+	}*/
 	
 	public void moveTo(Cell c , Direction dir) {
 		Entity e = c.getOccupant();
