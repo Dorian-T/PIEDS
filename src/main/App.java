@@ -1,6 +1,7 @@
 package main;
 
 import main.model.*;
+import main.model.grid.cell.Cell;
 import main.view_controller.*;
 
 public class App {

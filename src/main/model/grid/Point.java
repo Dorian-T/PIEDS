@@ -1,4 +1,4 @@
-package main.model;
+package main.model.grid;
 
 /**
  * coordonnées dans le tableau

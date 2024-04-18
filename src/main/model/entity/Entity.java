@@ -1,4 +1,11 @@
-package main.model;
+package main.model.entity;
+
+import main.model.grid.cell.Cell;
+//import main.model.Box;
+//import main.model.Entity;
+//import main.model.Player;
+import main.model.grid.Direction;
+import main.model.grid.GridGame;
 
 public abstract class Entity {
 	GridGame gj;

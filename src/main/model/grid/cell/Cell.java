@@ -1,7 +1,12 @@
-package main.model;
+package main.model.grid.cell;
 
-import java.awt.Frame;
 import java.util.Observable;
+
+//import main.model.Cell;
+//import main.model.Wall;
+import main.model.entity.Entity;
+import main.model.grid.Direction;
+
 
 public class Cell extends Observable{
 	int x;

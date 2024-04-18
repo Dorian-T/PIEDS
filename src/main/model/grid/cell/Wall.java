@@ -1,4 +1,8 @@
-package main.model;
+package main.model.grid.cell;
+
+import main.model.grid.Direction;
+import main.model.entity.Entity;
+
 
 public class Wall extends Cell {
 

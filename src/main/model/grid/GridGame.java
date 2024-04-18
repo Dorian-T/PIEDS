@@ -1,4 +1,4 @@
-package main.model;
+package main.model.grid;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,6 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+
+import main.model.Direction;
+import main.model.Entity;
+import main.model.Point;
+import main.model.entity.Player;
+import main.model.grid.cell.Cell;
+
 
 public class GridGame {
 
