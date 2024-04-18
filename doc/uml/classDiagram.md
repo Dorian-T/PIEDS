@@ -22,8 +22,8 @@ classDiagram
 
 	class Cell {
 		-Entity e
-		+come(Entity e) bool
-		+leave(Entity e) void
+		+enter(Entity e) bool
+		+quit(Entity e) void
 	}
 
 	class Door {
@@ -52,6 +52,10 @@ classDiagram
 	}
 
 	class Level {
+
+	}
+
+	class Magnet {
 
 	}
 
@@ -123,6 +127,7 @@ classDiagram
 	Cell <|-- Wall
 	Entity --> Direction
 	Entity <|-- Box
+	Entity <|-- Magnet
 	Entity <|-- Player
 	Box "1" *--> Color
 	BoxButton "1" *--> Color

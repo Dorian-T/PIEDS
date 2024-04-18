@@ -10,8 +10,8 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import main.model.Cell;
-import main.model.Direction;
+import main.model.grid.Direction;
+import main.model.grid.cell.Cell;
 
 
 public class Frame extends JFrame implements Observer {

@@ -1,7 +1,10 @@
-package main.model;
+package main.model.grid.cell;
 
-import java.awt.Frame;
 import java.util.Observable;
+
+import main.model.entity.Entity;
+import main.model.grid.Direction;
+
 
 public class Cell extends Observable{
 	int x;
@@ -36,16 +39,16 @@ public class Cell extends Observable{
 		notifyObservers();
 	}
 
-	public void entrer(Entity e) {
+	public boolean enter(Entity e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void quit(Entity e) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public void quitter(Entity e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	public void begin() {
 		setChanged();
 		notifyObservers();
