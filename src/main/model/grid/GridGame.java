@@ -34,11 +34,12 @@ public class GridGame {
                 for (int col = 0; col < tab[row].length && col < x; col++) {
                 	if(valuesC[col] != ".") {
                 		tab[row][col] = Cell.loadCell(valuesC[col].charAt(0), row, col);
+                	}else {
+                		tab[row][col] = new Cell(col, row);
                 	}
                 	if(valuesE[col] != ".") {
                 		tab[row][col].enter(Entity.loadEntity(valuesE[col].charAt(0)), Direction.RIGHT);
                 	}
-                	
                 }
                 row++;
             }
