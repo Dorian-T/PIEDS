@@ -8,7 +8,7 @@ import main.view_controller.*;
 public class App {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Hello, World!");
-        GridGame g = new GridGame("src/main/resources/level1.txt");
+        GridGame g = new GridGame("data/test.txt");
 		Frame f = new Frame(g);
 	}
 }
