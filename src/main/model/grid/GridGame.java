@@ -19,7 +19,6 @@ public class GridGame {
 	private Player p;
 	private Cell [][] tab;
 	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
-	private Player heros;
 
 	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
 		int width, height;
@@ -43,8 +42,14 @@ public class GridGame {
 				line = br.readLine();
 				values = line.split(" ");
 				for(int j = 0; j < width; j++) {
+					// Cell
 					tab[i][j] = Cell.loadCell(values[j].charAt(0), i, j);
-					tab[i][j].enter(Entity.loadEntity(values[j].charAt(1)), Direction.LEFT);
+
+					// Entity
+					Entity e = Entity.loadEntity(values[j].charAt(1));
+					if(e instanceof Player) p = (Player) e;
+					tab[i][j].enter(e, Direction.LEFT);
+
 					// allPoint.put(tab[i][j], new Point(i, j)); // TODO: Update allPoint
 				}
 			}
@@ -58,6 +63,16 @@ public class GridGame {
 		catch (Exception e) {
 			throw new IllegalArgumentException(e.getMessage());
 		}
+	}
+
+	// === Getters ===
+
+	public Player getPlayer() {
+		return p;
+	}
+
+	public Cell getCell(int x, int y) {
+		return tab[y][x];
 	}
 	
 	public void move(Entity entity, Direction dir) {
@@ -78,8 +93,8 @@ public class GridGame {
 	}
 	
 	public void moveHero(Direction d) {
-		Cell cCible = getCible(getPosition(heros),d);
-		heros.moveTo(cCible, d);
+		Cell cCible = getCible(getPosition(p),d);
+		p.moveTo(cCible, d);
 		//setChange();
 		//notifyObserver(...);
 	}
