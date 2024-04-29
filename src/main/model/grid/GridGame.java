@@ -18,41 +18,13 @@ public class GridGame {
 
 	private Player p;
 	private Cell [][] tab;
-	private Map<Cell, Point> allPoint; //Same thing as tab, so it needs to be updated at the same time
+	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
 	private Player heros;
-	
-	public GridGame(int x, int y, File levelCells, File levelEntities) throws IOException {
-		tab = new Cell[y][x];
-		try {
-			BufferedReader brC = new BufferedReader(new FileReader(levelCells));
-			BufferedReader brE = new BufferedReader(new FileReader(levelEntities));
-			String lineC, lineE;
-            int row = 0;
-            while ((lineC = brC.readLine()) != null && (lineE = brE.readLine()) != null && row < y) {
-                String[] valuesC = lineC.split(" ");
-                String[] valuesE = lineE.split(" ");
-                for (int col = 0; col < tab[row].length && col < x; col++) {
-                	if(valuesC[col] != ".") {
-                		tab[row][col] = Cell.loadCell(valuesC[col].charAt(0), row, col);
-                	}else {
-                		tab[row][col] = new Cell(col, row);
-                	}
-                	if(valuesE[col] != ".") {
-                		tab[row][col].enter(Entity.loadEntity(valuesE[col].charAt(0)), Direction.RIGHT);
-                	}
-                }
-                row++;
-            }
-            
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	public GridGame(File file) {
+	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
 		int width, height;
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(filename)))) {
 			String line;
 			String[] values;
 
@@ -76,6 +48,9 @@ public class GridGame {
 					// allPoint.put(tab[i][j], new Point(i, j)); // TODO: Update allPoint
 				}
 			}
+		}
+		catch (FileNotFoundException e) {
+			throw new FileNotFoundException("File not found.");
 		}
 		catch (IOException e) {
 			throw new IllegalArgumentException("Error while reading the file.");
