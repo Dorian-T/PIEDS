@@ -64,7 +64,7 @@ public class Cell extends Observable{
 	public static Cell loadCell(char c, int x, int y) {
 		Cell res = null;
 		switch(c) {
-			case 'w':
+			case '#':
 				res = new Wall(x, y);
 				break;
 			default:

@@ -32,7 +32,7 @@ public abstract class Entity {
 				res = new Box();
 				break;
 			default:
-				System.out.println("Erreur de charactere impossible");
+				System.out.println("Erreur de caractere impossible");
 				break;
 		}
 		return res;
