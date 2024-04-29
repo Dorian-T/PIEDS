@@ -48,6 +48,41 @@ public class GridGame {
 			e.printStackTrace();
 		}
 	}
+
+	public GridGame(File file) {
+		int width, height;
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+			String line;
+			String[] values;
+
+			// Get the width and height of the grid
+			line = br.readLine();
+			values = line.split(" ");
+			width = Integer.parseInt(values[0]);
+			height = Integer.parseInt(values[1]);
+			if(width <= 0 || height <= 0)
+				throw new IllegalArgumentException("Width and height must be positive.");
+
+			// Create the grid and the entities
+			tab = new Cell[height][width];
+			// allPoint = new Map<>(); // TODO: Initialize allPoint
+			for(int i = 0; i < height; i++) {
+				line = br.readLine();
+				values = line.split(" ");
+				for(int j = 0; j < width; j++) {
+					tab[i][j] = Cell.loadCell(values[j].charAt(0), i, j);
+					tab[i][j].enter(Entity.loadEntity(values[j].charAt(1)), Direction.LEFT);
+					// allPoint.put(tab[i][j], new Point(i, j)); // TODO: Update allPoint
+				}
+			}
+		}
+		catch (IOException e) {
+			throw new IllegalArgumentException("Error while reading the file.");
+		}
+		catch (Exception e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+	}
 	
 	public void move(Entity entity, Direction dir) {
 		// TODO Auto-generated method stub
