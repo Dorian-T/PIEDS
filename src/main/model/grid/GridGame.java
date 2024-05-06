@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
 
 import main.model.grid.Direction;
@@ -90,6 +91,13 @@ public class GridGame {
 	}
 	
 	public Point getPosition(Entity e) {
+		for(int i = 0; i < tab.length; i++) {
+			for(int j = 0; j < tab[0].length; j++) {
+				if(tab[i][j].getOccupant() != null && tab[i][j].getOccupant().equals(e)) {
+					return new Point(i,j);
+				}
+			}
+		}
 		return null;
 	}
 	

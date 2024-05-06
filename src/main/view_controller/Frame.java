@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import main.model.entity.Player;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
+import main.model.grid.Point;
 import main.model.grid.cell.Cell;
 
 
@@ -29,6 +30,7 @@ public class Frame extends JFrame implements Observer {
 	private Map<String, ImageIcon> icons;
 
 	public Frame(GridGame gg) {
+		this.gg = gg;
 		this.p = gg.getPlayer();
 		tabC = new JPanel[H][W];
 		build();
@@ -56,22 +58,24 @@ public class Frame extends JFrame implements Observer {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				tabC[gg.getPosition(p).y][gg.getPosition(p).x].setBackground(Color.LIGHT_GRAY);
+				System.out.println("test");
+				Point temp = gg.getPosition(p);
+				tabC[temp.y][temp.x].setBackground(Color.LIGHT_GRAY);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
-						p.moveTo(gg.getCible(gg.getPosition(p), Direction.LEFT), Direction.LEFT);
+						p.moveTo(gg.getCible(temp, Direction.LEFT), Direction.LEFT);
 						break;
 					case KeyEvent.VK_RIGHT:
-						p.moveTo(gg.getCible(gg.getPosition(p), Direction.RIGHT), Direction.RIGHT);
+						p.moveTo(gg.getCible(temp, Direction.RIGHT), Direction.RIGHT);
 						break;
 					case KeyEvent.VK_UP:
-						p.moveTo(gg.getCible(gg.getPosition(p), Direction.UP), Direction.UP);
+						p.moveTo(gg.getCible(temp, Direction.UP), Direction.UP);
 						break;
 					case KeyEvent.VK_DOWN:
-						p.moveTo(gg.getCible(gg.getPosition(p), Direction.DOWN), Direction.DOWN);
+						p.moveTo(gg.getCible(temp, Direction.DOWN), Direction.DOWN);
 						break;
 				}
-				tabC[gg.getPosition(p).y][gg.getPosition(p).x].setBackground(Color.YELLOW);
+				tabC[temp.y][temp.x].setBackground(Color.YELLOW);
 			}
 		});
 		requestFocus();
