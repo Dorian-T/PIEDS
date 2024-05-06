@@ -44,7 +44,7 @@ public class Cell extends Observable{
 
 	public boolean enter(Entity e, Direction dir) {
 		if(occupant == null) {
-			//depl(e);
+			moveEntity(e);
 			return true;
 		}else {
 			return false;
