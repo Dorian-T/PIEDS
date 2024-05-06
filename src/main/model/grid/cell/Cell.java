@@ -9,6 +9,7 @@ import main.model.grid.Direction;
 
 
 public class Cell extends Observable{
+	public static final Object imagePath = "emptyCell.png";
 	int x;
 	int y;
 	

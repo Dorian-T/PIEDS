@@ -5,7 +5,8 @@ import main.model.entity.Entity;
 
 
 public class Wall extends Cell {
-
+	public static final Object imagePath = "wall.jpg";
+	
 	public Wall(int x, int y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub

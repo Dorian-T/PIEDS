@@ -9,6 +9,7 @@ import main.model.grid.GridGame;
 
 public abstract class Entity {
 	GridGame gj;
+	public static final Object imagePath = "weirdEntity.png";
 	
 	/*public void move(Direction dir) {
 		gj.move(this, dir);
