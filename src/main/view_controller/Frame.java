@@ -33,7 +33,6 @@ public class Frame extends JFrame implements Observer {
 		tabC = new JPanel[H][W];
 		build();
 		addKeyboardListener();
-		
 	}
 
 	private void build() {
