@@ -9,10 +9,15 @@ import main.model.grid.GridGame;
 
 public abstract class Entity {
 	GridGame gj;
+	Direction dir;
 	
 	/*public void move(Direction dir) {
 		gj.move(this, dir);
 	}*/
+
+	public void setDirection(Direction dir) {
+		this.dir = dir;
+	}
 	
 	public void moveTo(Cell c , Direction dir) {
 		Entity e = c.getOccupant();
@@ -30,6 +35,8 @@ public abstract class Entity {
 				break;
 			case 'b':
 				res = new Box();
+				break;
+			case '.': // empty cell
 				break;
 			default:
 				System.out.println("Erreur de caractere impossible");
