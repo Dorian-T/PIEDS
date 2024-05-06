@@ -10,6 +10,7 @@ import main.model.grid.GridGame;
 public abstract class Entity {
 	GridGame gj;
 	Direction dir;
+	public static final Object imagePath = "weirdEntity.png";
 	
 	/*public void move(Direction dir) {
 		gj.move(this, dir);
@@ -18,7 +19,7 @@ public abstract class Entity {
 	public void setDirection(Direction dir) {
 		this.dir = dir;
 	}
-	
+
 	public void moveTo(Cell c , Direction dir) {
 		Entity e = c.getOccupant();
 		if(e != null) {

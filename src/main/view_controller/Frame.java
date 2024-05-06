@@ -26,7 +26,7 @@ public class Frame extends JFrame implements Observer {
 	private Player p;
 	private GridGame gg;
 	
-	private Map<Class<Cell>, ImageIcon> icons;
+	private Map<String, ImageIcon> icons;
 
 	public Frame(GridGame gg) {
 		this.p = gg.getPlayer();
@@ -82,8 +82,10 @@ public class Frame extends JFrame implements Observer {
 	public void update(java.util.Observable o, Object arg) {
 		for(int y = 0; y < tabC.length; y++) {
 			for(int x = 0; x < tabC[y].length; x++) {
-				tabC[y][x].add(new JLabel(icons.get(gg.getCell(x,y).getClass())));
+				//tabC[y][x].add(new JLabel(icons.get(gg.getCell(x,y).imagePath)));
+				//tabC[y][x].add(new JLabel(icons.get(gg.getCell(x,y).getOccupant().imagePath)));
 				if(y == gg.getPosition(p).y && x == gg.getPosition(p).x) {
+					
 					tabC[y][x].setBackground(Color.LIGHT_GRAY);
 					
 				}else {
