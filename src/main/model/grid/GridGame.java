@@ -101,6 +101,13 @@ public class GridGame {
 	}
 
 	public Point getPosition(Entity e) {
+		for(int i = 0; i < tab.length; i++) {
+			for(int j = 0; j < tab[0].length; j++) {
+				if(tab[i][j].getOccupant() != null && tab[i][j].getOccupant().equals(e)) {
+					return new Point(i,j);
+				}
+			}
+		}
 		return null;
 	}
 
