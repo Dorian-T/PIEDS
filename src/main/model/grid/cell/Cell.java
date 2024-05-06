@@ -56,6 +56,10 @@ public class Cell extends Observable {
 		return occupant;
 	}
 
+	public Cell getCell(Cell cell, Direction dir) {
+		return grid.getCell(cell, dir);
+	}
+
 
 	// === Methods ===
 

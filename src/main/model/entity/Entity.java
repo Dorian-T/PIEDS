@@ -9,7 +9,7 @@ import main.model.grid.GridGame;
 import main.model.grid.Point;
 
 public abstract class Entity {
-	GridGame gj;
+	Cell cell;
 	Direction dir;
 	public static final Object imagePath = "weirdEntity.png";
 
@@ -21,8 +21,13 @@ public abstract class Entity {
 		this.dir = dir;
 	}
 
-	public boolean moveTo(Cell cell, Direction dir) {
-		return cell.enter(this, dir);
+	public boolean moveTo(Direction dir) {
+		Cell newCell = cell.getCell(cell, dir);
+		if(newCell.enter(this, dir)) {
+			cell = newCell;
+			return true;
+		}
+		return false;
 	}
 
 	public static Entity loadEntity(char c) {

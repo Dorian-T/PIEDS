@@ -73,10 +73,15 @@ public class GridGame {
 		}
 	}
 
+
 	// === Getters ===
 
 	public Player getPlayer() {
 		return p;
+	}
+
+	public Cell getCell(Point p) {
+		return tab[p.x][p.y];
 	}
 
 	public Cell getCell(Cell cell, Direction dir) {
@@ -94,6 +99,9 @@ public class GridGame {
 				return null;
 		}
 	}
+
+
+	// === Methods ===
 
 	public void move(Entity entity, Direction dir) {
 		// TODO Auto-generated method stub
