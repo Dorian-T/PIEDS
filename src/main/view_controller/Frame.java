@@ -58,21 +58,20 @@ public class Frame extends JFrame implements Observer {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println("test");
 				Point temp = gg.getPosition(p);
 				tabC[temp.y][temp.x].setBackground(Color.LIGHT_GRAY);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
-						p.enter(gg.getCible(temp, Direction.LEFT), Direction.LEFT);
+						p.enter(gg.getCell(temp, Direction.LEFT), Direction.LEFT);
 						break;
 					case KeyEvent.VK_RIGHT:
-						p.moveTo(gg.getCible(temp, Direction.RIGHT), Direction.RIGHT);
+						p.moveTo(gg.getCell(temp, Direction.RIGHT), Direction.RIGHT);
 						break;
 					case KeyEvent.VK_UP:
-						p.moveTo(gg.getCible(temp, Direction.UP), Direction.UP);
+						p.moveTo(gg.getCell(temp, Direction.UP), Direction.UP);
 						break;
 					case KeyEvent.VK_DOWN:
-						p.moveTo(gg.getCible(temp, Direction.DOWN), Direction.DOWN);
+						p.moveTo(gg.getCell(temp, Direction.DOWN), Direction.DOWN);
 						break;
 				}
 				tabC[temp.y][temp.x].setBackground(Color.YELLOW);
