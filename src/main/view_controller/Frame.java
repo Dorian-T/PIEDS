@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Observer;
 
@@ -33,6 +34,7 @@ public class Frame extends JFrame implements Observer {
 		this.gg = gg;
 		this.p = gg.getPlayer();
 		tabC = new JPanel[H][W];
+		this.icons = new HashMap<String, ImageIcon>();
 		build();
 		addKeyboardListener();
 	}
@@ -84,10 +86,13 @@ public class Frame extends JFrame implements Observer {
 	public void update(java.util.Observable o, Object arg) {
 		for(int y = 0; y < tabC.length; y++) {
 			for(int x = 0; x < tabC[y].length; x++) {
-				//tabC[y][x].add(new JLabel(icons.get(gg.getCell(x,y).imagePath)));
-				//tabC[y][x].add(new JLabel(icons.get(gg.getCell(x,y).getOccupant().imagePath)));
+				if(!icons.containsKey(gg.getCell(new Point(x,y)).imagePath))
+					icons.put((String) gg.getCell(new Point(x,y)).imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).imagePath));
+				if(!icons.containsKey(gg.getCell(new Point(x,y)).getOccupant().imagePath))
+					icons.put((String) gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
+				tabC[y][x].add(new JLabel(icons.get(gg.getCell(new Point(x,y)).imagePath)));
+				tabC[y][x].add(new JLabel(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath)));
 				if(y == gg.getPosition(p).y && x == gg.getPosition(p).x) {
-					
 					tabC[y][x].setBackground(Color.LIGHT_GRAY);
 					
 				}else {

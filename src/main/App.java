@@ -10,6 +10,7 @@ public class App {
 		System.out.println("Hello, World!");
         GridGame g = new GridGame("data/test.txt");
 		Frame f = new Frame(g);
+		g.getPlayer().addObserver(f);
 		f.setVisible(true);
 	}
 }

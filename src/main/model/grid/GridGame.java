@@ -81,7 +81,7 @@ public class GridGame {
 	}
 
 	public Cell getCell(Point p) {
-		return tab[p.x][p.y];
+		return tab[p.y][p.x];
 	}
 
 	public Cell getCell(Cell cell, Direction dir) {
@@ -105,7 +105,6 @@ public class GridGame {
 
 	public void move(Entity entity, Direction dir) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public Point getPosition(Entity e) {
@@ -123,14 +122,14 @@ public class GridGame {
 	// 	Point pe = getPosition(e);
 	// 	Cell cible = getCible(pe,dir);
 	// 	cible.enter(e, dir);
-	// 	//setChange();
-	// 	//notifyObserver(...);
+	// 	//setChanged();
+	// 	//notifyObservers(...);
 	// }
 	
 	// public void moveHero(Direction d) {
 	// 	Cell cCible = getCible(getPosition(p),d);
 	// 	p.moveTo(cCible, d);
-	// 	//setChange();
-	// 	//notifyObserver(...);
+	// 	//setChanged();
+	// 	//notifyObservers(...);
 	// }
 }
