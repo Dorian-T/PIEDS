@@ -67,6 +67,9 @@ public class Cell extends Observable{
 			case '#':
 				res = new Wall(x, y);
 				break;
+			case '.':
+				res = new Cell(x, y);
+				break;
 			default:
 				System.out.println("Erreur de charactere impossible");
 				break;
