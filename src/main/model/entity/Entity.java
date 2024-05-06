@@ -22,7 +22,18 @@ public abstract class Entity {
 	}
 
 	public boolean moveTo(Point coordinates, Direction dir, Cell oldCell) {
+		//oldCell.enter(this, dir);
 		if(gj.getCell(coordinates.x, coordinates.y).enter(this, dir)) {
+			oldCell.leave();
+			
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean moveTo(Direction dir, Cell oldCell) {
+		
+		if(gj.getCible(new Point(oldCell.getX(),oldCell.getY()), dir).enter(this, dir)) {
 			oldCell.leave();
 			return true;
 		}

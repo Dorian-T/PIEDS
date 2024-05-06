@@ -117,6 +117,7 @@ public class GridGame {
 	// }
 
 	public Cell getCible( Point pe, Direction dir) {
-		return null;
+		pe = new Point(pe.x, pe.y, dir);
+		return tab[pe.x][pe.y];
 	}
 }

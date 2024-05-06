@@ -63,7 +63,7 @@ public class Frame extends JFrame implements Observer {
 				tabC[temp.y][temp.x].setBackground(Color.LIGHT_GRAY);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
-						p.moveTo(gg.getCible(temp, Direction.LEFT), Direction.LEFT);
+						p.enter(gg.getCible(temp, Direction.LEFT), Direction.LEFT);
 						break;
 					case KeyEvent.VK_RIGHT:
 						p.moveTo(gg.getCible(temp, Direction.RIGHT), Direction.RIGHT);
