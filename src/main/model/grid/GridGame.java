@@ -53,7 +53,7 @@ public class GridGame {
 				line = br.readLine();
 				values = line.split(" ");
 				for(int j = 0; j < width; j++) {
-					Entity e = Entity.loadEntity(values[j].charAt(0));
+					Entity e = Entity.loadEntity(values[j].charAt(0), tab[i][j]);
 					if(e != null) {
 						if(e instanceof Player)
 							p = (Player) e;

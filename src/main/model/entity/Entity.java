@@ -13,6 +13,14 @@ public abstract class Entity {
 	Direction dir;
 	public static final Object imagePath = "weirdEntity.png";
 
+
+	// === Constructors ===
+
+	public Entity(Cell cell) {
+		this.cell = cell;
+		dir = Direction.LEFT;
+	}
+
 	/*public void move(Direction dir) {
 		gj.move(this, dir);
 	}*/
@@ -30,14 +38,14 @@ public abstract class Entity {
 		return false;
 	}
 
-	public static Entity loadEntity(char c) {
+	public static Entity loadEntity(char c, Cell cell) {
 		Entity res = null;
 		switch(c) {
 			case 'p':
-				res = new Player();
+				res = new Player(cell);
 				break;
 			case 'b':
-				res = new Box();
+				res = new Box(cell);
 				break;
 			case '.': // empty cell
 				break;
