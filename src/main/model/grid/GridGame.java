@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import main.model.grid.Direction;
@@ -37,15 +38,13 @@ public class GridGame {
 
 			// Create the grid
 			tab = new Cell[height][width];
-			// allPoint = new Map<>(); // TODO: Initialize allPoint
+			allPoint = new HashMap<>();
 			for(int i = 0; i < height; i++) {
 				line = br.readLine();
 				values = line.split(" ");
 				for(int j = 0; j < width; j++) {
-					// Cell
-					tab[i][j] = Cell.loadCell(values[j].charAt(0), i, j);
-
-					// allPoint.put(tab[i][j], new Point(i, j)); // TODO: Update allPoint
+					tab[i][j] = Cell.loadCell(this, values[j].charAt(0));
+					allPoint.put(tab[i][j], new Point(i, j));
 				}
 			}
 
@@ -80,8 +79,20 @@ public class GridGame {
 		return p;
 	}
 
-	public Cell getCell(int x, int y) {
-		return tab[y][x];
+	public Cell getCell(Cell cell, Direction dir) {
+		Point cellCoordinates = allPoint.get(cell);
+		switch(dir) {
+			case UP:
+				return tab[cellCoordinates.x][cellCoordinates.y - 1];
+			case DOWN:
+				return tab[cellCoordinates.x][cellCoordinates.y + 1];
+			case LEFT:
+				return tab[cellCoordinates.x - 1][cellCoordinates.y];
+			case RIGHT:
+				return tab[cellCoordinates.x + 1][cellCoordinates.y];
+			default:
+				return null;
+		}
 	}
 
 	public void move(Entity entity, Direction dir) {
@@ -107,8 +118,4 @@ public class GridGame {
 	// 	//setChange();
 	// 	//notifyObserver(...);
 	// }
-
-	public Cell getCible( Point pe, Direction dir) {
-		return null;
-	}
 }

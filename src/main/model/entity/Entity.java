@@ -21,14 +21,10 @@ public abstract class Entity {
 		this.dir = dir;
 	}
 
-	public boolean moveTo(Point coordinates, Direction dir, Cell oldCell) {
-		if(gj.getCell(coordinates.x, coordinates.y).enter(this, dir)) {
-			oldCell.leave();
-			return true;
-		}
-		return false;
+	public boolean moveTo(Cell cell, Direction dir) {
+		return cell.enter(this, dir);
 	}
-	
+
 	public static Entity loadEntity(char c) {
 		Entity res = null;
 		switch(c) {

@@ -10,33 +10,47 @@ import main.model.grid.GridGame;
 import main.model.grid.Point;
 
 
-public class Cell extends Observable{
+/**
+ * Represents a cell in the grid of the game.
+ */
+public class Cell extends Observable {
 
 	// === Variables ===
 
-	public static final Object imagePath = "emptyCell.png";
-	int x;
-	int y;
+	GridGame grid;
 	Entity occupant;
+	public static final Object imagePath = "emptyCell.png";
 
 
 	// === Constructors ===
 
-	public Cell(int x, int y) {
-		this.x = x;
-		this.y = y;
+	/**
+	 * Constructor of the class Cell
+	 *
+	 * @param grid
+	 */
+	public Cell(GridGame grid) {
+		this.grid = grid;
+		occupant = null;
+	}
+
+	public static Cell loadCell(GridGame grid, char c) throws IllegalArgumentException {
+		Cell res = null;
+		switch(c) {
+			case '#':
+				res = new Wall(grid);
+				break;
+			case '.':
+				res = new Cell(grid);
+				break;
+			default:
+				throw new IllegalArgumentException("Invalid character for cell.");
+		}
+		return res;
 	}
 
 
 	// === Getters ===
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
 
 	public Entity getOccupant() {
 		return occupant;
@@ -45,19 +59,19 @@ public class Cell extends Observable{
 
 	// === Methods ===
 
-	public void move(Direction dir) { // C'est quoi ?
-		if(dir == Direction.LEFT) { //tester si c'est possible ?
-			x--; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-		}else if(dir == Direction.RIGHT) { //tester si c'est possible ?
-			x++; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-		}else if(dir == Direction.UP) { //tester si c'est possible ?
-			y--; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-		}else if(dir == Direction.DOWN) { //tester si c'est possible ?
-			y++; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-		}
-		setChanged();
-		notifyObservers();
-	}
+	// public void move(Direction dir) { // C'est quoi ?
+	// 	if(dir == Direction.LEFT) { //tester si c'est possible ?
+	// 		x--; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
+	// 	}else if(dir == Direction.RIGHT) { //tester si c'est possible ?
+	// 		x++; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
+	// 	}else if(dir == Direction.UP) { //tester si c'est possible ?
+	// 		y--; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
+	// 	}else if(dir == Direction.DOWN) { //tester si c'est possible ?
+	// 		y++; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
+	// 	}
+	// 	setChanged();
+	// 	notifyObservers();
+	// }
 
 	public boolean enter(Entity e, Direction dir) {
 		if(occupant == null) {
@@ -66,7 +80,8 @@ public class Cell extends Observable{
 			return true;
 		}
 		else {
-			if(e.moveTo(new Point(x, y, dir), dir, this)) {
+			Cell newCell = grid.getCell(this, dir);
+			if(newCell.enter(e, dir)) {
 				occupant = e;
 				return true;
 			}
@@ -74,29 +89,13 @@ public class Cell extends Observable{
 		}
 	}
 
-	public boolean leave() {
-		occupant = null;
-		return true;
-	}
+	// public boolean leave() {
+	// 	occupant = null;
+	// 	return true;
+	// }
 
 	public void begin() {
 		setChanged();
 		notifyObservers();
-	}
-
-	public static Cell loadCell(char c, int x, int y) {
-		Cell res = null;
-		switch(c) {
-			case '#':
-				res = new Wall(x, y);
-				break;
-			case '.':
-				res = new Cell(x, y);
-				break;
-			default:
-				System.out.println("Erreur de charactere impossible");
-				break;
-		}
-		return res;
 	}
 }
