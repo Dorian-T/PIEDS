@@ -6,12 +6,13 @@ import main.model.grid.cell.Cell;
 //import main.model.Player;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
+import main.model.grid.Point;
 
 public abstract class Entity {
 	GridGame gj;
 	Direction dir;
 	public static final Object imagePath = "weirdEntity.png";
-	
+
 	/*public void move(Direction dir) {
 		gj.move(this, dir);
 	}*/
@@ -20,12 +21,12 @@ public abstract class Entity {
 		this.dir = dir;
 	}
 
-	public void moveTo(Cell c , Direction dir) {
-		Entity e = c.getOccupant();
-		if(e != null) {
-			//e.push();
+	public boolean moveTo(Point coordinates, Direction dir, Cell oldCell) {
+		if(gj.getCell(coordinates.x, coordinates.y).enter(this, dir)) {
+			oldCell.leave();
+			return true;
 		}
-		c.enter(this, dir);
+		return false;
 	}
 	
 	public static Entity loadEntity(char c) {

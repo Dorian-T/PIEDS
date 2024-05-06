@@ -11,5 +11,24 @@ public class Point {
 		this.x = x;
 		this.y = y;
 	}
+
+	public Point(int x, int y, Direction dir) {
+		this.x = x;
+		this.y = y;
+		switch(dir) {
+			case LEFT:
+				this.x--;
+				break;
+			case RIGHT:
+				this.x++;
+				break;
+			case UP:
+				this.y--;
+				break;
+			case DOWN:
+				this.y++;
+				break;
+		}
+	}
 }
 
