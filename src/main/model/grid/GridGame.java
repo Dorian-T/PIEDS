@@ -84,12 +84,12 @@ public class GridGame {
 	public Cell getCell(int x, int y) {
 		return tab[y][x];
 	}
-	
+
 	public void move(Entity entity, Direction dir) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 	public Point getPosition(Entity e) {
 		for(int i = 0; i < tab.length; i++) {
 			for(int j = 0; j < tab[0].length; j++) {
@@ -100,24 +100,23 @@ public class GridGame {
 		}
 		return null;
 	}
+
+	// public void seDeplacer(Entity e, Direction dir) {
+	// 	Point pe = getPosition(e);
+	// 	Cell cible = getCible(pe,dir);
+	// 	cible.enter(e, dir);
+	// 	//setChange();
+	// 	//notifyObserver(...);
+	// }
 	
-	public void seDeplacer(Entity e, Direction dir) {
-		Point pe = getPosition(e);
-		Cell cible = getCible(pe,dir);
-		cible.enter(e, dir);
-		//setChange();
-		//notifyObserver(...);
-	}
-	
-	public void moveHero(Direction d) {
-		Cell cCible = getCible(getPosition(p),d);
-		p.moveTo(cCible, d);
-		//setChange();
-		//notifyObserver(...);
-	}
-	
+	// public void moveHero(Direction d) {
+	// 	Cell cCible = getCible(getPosition(p),d);
+	// 	p.moveTo(cCible, d);
+	// 	//setChange();
+	// 	//notifyObserver(...);
+	// }
+
 	public Cell getCible( Point pe, Direction dir) {
 		return null;
 	}
-
 }
