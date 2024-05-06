@@ -35,7 +35,7 @@ public class GridGame {
 			if(width <= 0 || height <= 0)
 				throw new IllegalArgumentException("Width and height must be positive.");
 
-			// Create the grid and the entities
+			// Create the grid
 			tab = new Cell[height][width];
 			// allPoint = new Map<>(); // TODO: Initialize allPoint
 			for(int i = 0; i < height; i++) {
@@ -45,12 +45,21 @@ public class GridGame {
 					// Cell
 					tab[i][j] = Cell.loadCell(values[j].charAt(0), i, j);
 
-					// Entity
-					Entity e = Entity.loadEntity(values[j].charAt(1));
-					if(e instanceof Player) p = (Player) e;
-					tab[i][j].enter(e, Direction.LEFT);
-
 					// allPoint.put(tab[i][j], new Point(i, j)); // TODO: Update allPoint
+				}
+			}
+
+			// Create the entities
+			for(int i = 0; i < height; i++) {
+				line = br.readLine();
+				values = line.split(" ");
+				for(int j = 0; j < width; j++) {
+					Entity e = Entity.loadEntity(values[j].charAt(0));
+					if(e != null) {
+						if(e instanceof Player)
+							p = (Player) e;
+						tab[i][j].enter(e, Direction.LEFT);
+					}
 				}
 			}
 		}
