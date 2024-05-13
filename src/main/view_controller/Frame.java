@@ -117,14 +117,10 @@ public class Frame extends JFrame implements Observer {
 				
 				if(gg.getCell(new Point(x,y)).getOccupant() != null) {
 					if(!icons.containsKey(gg.getCell(new Point(x,y)).getOccupant().imagePath))
-<<<<<<< HEAD
 						icons.put((String) gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
 					tabImageEntityC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath));
 					System.out.println(gg.getCell(new Point(x,y)).getOccupant().imagePath);
-=======
-						icons.put(gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
-					tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath));
->>>>>>> branch 'main' of git@github.com:Dorian-T/PIEDS.git
+
 				}
 			}
 		}
