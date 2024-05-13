@@ -9,7 +9,7 @@ import main.model.grid.cell.Cell;
 public abstract class Entity extends Observable{
 	Cell cell;
 	Direction dir;
-	public String imagePath = "weirdEntity.png";
+	public String imagePath;
 
 
 	// === Constructors ===

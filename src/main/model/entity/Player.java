@@ -5,10 +5,9 @@ import main.model.grid.Direction;
 
 
 public class Player extends Entity {
-	public String imagePath = "player.png";
-
 	public Player(Cell cell) {
 		super(cell);
+		imagePath = "player.png";
 	}
 
 	@Override
