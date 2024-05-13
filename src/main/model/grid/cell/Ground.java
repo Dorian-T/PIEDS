@@ -11,7 +11,7 @@ import main.model.entity.Entity;
  *
  * @see Cell
  */
-public class Wall extends Cell {
+public class Ground extends Cell {
 
 	// === Variables ===
 
@@ -24,24 +24,10 @@ public class Wall extends Cell {
 	 *
 	 * @param grid
 	 */
-	public Wall(GridGame grid) {
+	public Ground(GridGame grid) {
 		super(grid);
-		imagePath = "wall.png";
+		imagePath = "ground.png";
 		// TODO Auto-generated constructor stub
 	}
 
-
-	// === Methods ===
-
-	/**
-	 * Returns false because a wall cannot be entered.
-	 *
-	 * @param e the entity that wants to enter the cell
-	 * @param dir the direction from which the entity wants to enter the cell
-	 * @return false
-	 */
-	@Override
-	public boolean enter(Entity e, Direction dir) {
-		return false;
-	}
 }

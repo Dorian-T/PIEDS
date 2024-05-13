@@ -13,11 +13,6 @@ public class Box extends Entity {
 
 	// === Variables ===
 
-	/**
-	 * The path of the image of the box.
-	 */
-	public static final Object imagePath = "box.png";
-
 
 	// === Constructors ===
 
@@ -28,5 +23,6 @@ public class Box extends Entity {
 	 */
 	public Box(Cell cell) {
 		super(cell);
+		imagePath = "box.png";
 	}
 }

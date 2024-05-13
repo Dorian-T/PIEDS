@@ -60,7 +60,7 @@ public class Cell extends Observable {
 				res = new Wall(grid);
 				break;
 			case '.':
-				res = new Cell(grid);
+				res = new Ground(grid);
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid character for cell.");
