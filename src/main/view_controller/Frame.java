@@ -64,15 +64,19 @@ public class Frame extends JFrame implements Observer {
 				tabC[temp.y][temp.x].setBackground(Color.LIGHT_GRAY);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
+					case KeyEvent.VK_Q:
 						p.moveTo(Direction.LEFT);
 						break;
 					case KeyEvent.VK_RIGHT:
+					case KeyEvent.VK_D:
 						p.moveTo(Direction.RIGHT);
 						break;
 					case KeyEvent.VK_UP:
+					case KeyEvent.VK_Z:
 						p.moveTo(Direction.UP);
 						break;
 					case KeyEvent.VK_DOWN:
+					case KeyEvent.VK_S:
 						p.moveTo(Direction.DOWN);
 						break;
 				}
