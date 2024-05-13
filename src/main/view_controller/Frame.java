@@ -72,7 +72,6 @@ public class Frame extends JFrame implements Observer {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				Point temp = gg.getPosition(p);
-				tabC[temp.y][temp.x].setBackground(Color.LIGHT_GRAY);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
 					case KeyEvent.VK_Q:
@@ -91,7 +90,6 @@ public class Frame extends JFrame implements Observer {
 						p.moveTo(Direction.DOWN);
 						break;
 				}
-				tabC[temp.y][temp.x].setBackground(Color.YELLOW);
 			}
 		});
 		requestFocus();
@@ -102,12 +100,6 @@ public class Frame extends JFrame implements Observer {
 		System.out.println("Update !");
 		for(int y = 0; y < tabC.length; y++) {
 			for(int x = 0; x < tabC[y].length; x++) {
-				if(y == gg.getPosition(p).y && x == gg.getPosition(p).x) {
-					//tabC[y][x].setBackground(Color.LIGHT_GRAY);
-				}else {
-					//tabC[y][x].setBackground(Color.CYAN);
-				}
-				
 				if(!icons.containsKey(gg.getCell(new Point(x,y)).imagePath))
 					icons.put((String) gg.getCell(new Point(x,y)).imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).imagePath));
 				tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).imagePath));

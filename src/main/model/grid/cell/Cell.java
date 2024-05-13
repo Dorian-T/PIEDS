@@ -30,7 +30,7 @@ public class Cell extends Observable {
 	/**
 	 * The path of the image of an empty cell.
 	 */
-	public static final Object imagePath = "emptyCellTemp.png";
+	public Object imagePath;
 
 
 	// === Constructors ===

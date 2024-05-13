@@ -15,10 +15,6 @@ public class Wall extends Cell {
 
 	// === Variables ===
 
-	/**
-	 * The path of the image of the wall.
-	 */
-	public static final Object imagePath = "wall.jpg";
 
 
 	// === Constructors ===
@@ -30,6 +26,7 @@ public class Wall extends Cell {
 	 */
 	public Wall(GridGame grid) {
 		super(grid);
+		imagePath = "wall.jpg";
 		// TODO Auto-generated constructor stub
 	}
 
