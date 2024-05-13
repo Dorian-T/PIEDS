@@ -157,7 +157,7 @@ public class GridGame {
 	// 	//setChanged();
 	// 	//notifyObservers(...);
 	// }
-	
+
 	// public void moveHero(Direction d) {
 	// 	Cell cCible = getCible(getPosition(p),d);
 	// 	p.moveTo(cCible, d);
