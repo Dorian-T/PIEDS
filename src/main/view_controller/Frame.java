@@ -56,6 +56,15 @@ public class Frame extends JFrame implements Observer {
 				tabImageGroundC[y][x] = new JLabel();
 				tabImageEntityC[y][x] = new JLabel();
 				
+				if(!icons.containsKey(gg.getCell(new Point(x,y)).imagePath))
+					icons.put((String) gg.getCell(new Point(x,y)).imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).imagePath));
+				tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).imagePath));
+				if(gg.getCell(new Point(x,y)).getOccupant() != null) {
+					if(!icons.containsKey(gg.getCell(new Point(x,y)).getOccupant().imagePath))
+						icons.put((String) gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
+					tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath));
+					System.out.println(gg.getCell(new Point(x,y)).getOccupant().imagePath);
+				}
 				tabC[y][x].add(tabImageGroundC[y][x]);
 				tabC[y][x].add(tabImageEntityC[y][x]);
 				//tabC[y][x].add(new JLabel(icons.get(gg.getCell(new Point(x,y)).imagePath)));
@@ -109,7 +118,6 @@ public class Frame extends JFrame implements Observer {
 					tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath));
 					System.out.println(gg.getCell(new Point(x,y)).getOccupant().imagePath);
 				}
-				
 			}
 		}
 	}

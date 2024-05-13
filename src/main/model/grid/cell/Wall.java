@@ -26,7 +26,7 @@ public class Wall extends Cell {
 	 */
 	public Wall(GridGame grid) {
 		super(grid);
-		imagePath = "wall.jpg";
+		imagePath = "wall.png";
 		// TODO Auto-generated constructor stub
 	}
 
