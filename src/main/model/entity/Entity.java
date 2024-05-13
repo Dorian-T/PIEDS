@@ -14,7 +14,7 @@ import main.model.grid.Point;
 public abstract class Entity extends Observable{
 	Cell cell;
 	Direction dir;
-	public static final Object imagePath = "weirdEntity.png";
+	public String imagePath = "weirdEntity.png";
 
 
 	// === Constructors ===

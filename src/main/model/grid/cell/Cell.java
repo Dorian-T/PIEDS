@@ -19,7 +19,7 @@ public class Cell extends Observable {
 
 	GridGame grid;
 	Entity occupant;
-	public static final Object imagePath = "emptyCell.png";
+	public static final Object imagePath = "emptyCellTemp.png";
 
 
 	// === Constructors ===
