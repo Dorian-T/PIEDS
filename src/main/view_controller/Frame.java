@@ -115,6 +115,7 @@ public class Frame extends JFrame implements Observer {
 					icons.put((String) gg.getCell(new Point(x,y)).imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).imagePath));
 				tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).imagePath));
 				
+				tabImageEntityC[y][x].setIcon(null);
 				if(gg.getCell(new Point(x,y)).getOccupant() != null) {
 					if(!icons.containsKey(gg.getCell(new Point(x,y)).getOccupant().imagePath))
 						icons.put((String) gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
