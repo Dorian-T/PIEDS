@@ -69,6 +69,18 @@ public class Cell extends Observable {
 	}
 
 
+	// === Setters ===
+
+	/**
+	 * Sets the occupant of the cell.
+	 *
+	 * @param occupant the new occupant of the cell
+	 */
+	public void setOccupant(Entity occupant) {
+		this.occupant = occupant;
+	}
+
+
 	// === Getters ===
 
 	/**
@@ -104,6 +116,7 @@ public class Cell extends Observable {
 	public boolean enter(Entity e, Direction dir) {
 		if(occupant == null) {
 			e.setDirection(dir);
+			e.getCell().setOccupant(null);
 			occupant = e;
 			return true;
 		}

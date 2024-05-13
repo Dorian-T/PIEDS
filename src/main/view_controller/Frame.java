@@ -71,7 +71,6 @@ public class Frame extends JFrame implements Observer {
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				Point temp = gg.getPosition(p);
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
 					case KeyEvent.VK_Q:
@@ -89,6 +88,8 @@ public class Frame extends JFrame implements Observer {
 					case KeyEvent.VK_S:
 						p.moveTo(Direction.DOWN);
 						break;
+					default:
+						break;
 				}
 			}
 		});
@@ -105,11 +106,9 @@ public class Frame extends JFrame implements Observer {
 				tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).imagePath));
 				if(gg.getCell(new Point(x,y)).getOccupant() != null) {
 					if(!icons.containsKey(gg.getCell(new Point(x,y)).getOccupant().imagePath))
-						icons.put((String) gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
+						icons.put(gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
 					tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath));
-					System.out.println(gg.getCell(new Point(x,y)).getOccupant().imagePath);
 				}
-				
 			}
 		}
 	}

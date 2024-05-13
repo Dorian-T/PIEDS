@@ -69,6 +69,18 @@ public abstract class Entity extends Observable{
 	}
 
 
+	// === Getters ===
+
+	/**
+	 * Returns the cell where the entity is.
+	 *
+	 * @return the cell where the entity is
+	 */
+	public Cell getCell() {
+		return cell;
+	}
+
+
 	// === Setters ===
 
 	/**
