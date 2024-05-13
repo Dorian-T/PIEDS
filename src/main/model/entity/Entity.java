@@ -28,7 +28,7 @@ public abstract class Entity extends Observable{
 	/**
 	 * The path of the image of a default entity.
 	 */
-	public static final Object imagePath = "weirdEntity.png";
+	public String imagePath;
 
 
 	// === Constructors ===

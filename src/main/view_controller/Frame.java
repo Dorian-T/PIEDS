@@ -25,6 +25,7 @@ public class Frame extends JFrame implements Observer {
 	private static final int W = 16;
 	private static final int H = 9;
 	private JPanel[][] tabC;
+	private JLabel[][] tabImageGroundC, tabImageEntityC; //tableau des images des cases (les labels pour les afficher)
 	private Player p;
 	private GridGame gg;
 	
@@ -34,6 +35,9 @@ public class Frame extends JFrame implements Observer {
 		this.gg = gg;
 		this.p = gg.getPlayer();
 		tabC = new JPanel[H][W];
+		tabImageGroundC = new JLabel[H][W];
+		tabImageEntityC = new JLabel[H][W];
+		
 		this.icons = new HashMap<String, ImageIcon>();
 		build();
 		addKeyboardListener();
@@ -49,6 +53,13 @@ public class Frame extends JFrame implements Observer {
 		for(int y = 0; y < H; y++) {
 			for(int x = 0; x < W; x++) {
 				tabC[y][x] = new JPanel();
+				tabImageGroundC[y][x] = new JLabel();
+				tabImageEntityC[y][x] = new JLabel();
+				
+				tabC[y][x].add(tabImageGroundC[y][x]);
+				tabC[y][x].add(tabImageEntityC[y][x]);
+				//tabC[y][x].add(new JLabel(icons.get(gg.getCell(new Point(x,y)).imagePath)));
+				//tabC[y][x].add(new JLabel(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath)));
 				jpC.add(tabC[y][x]);
 			}
 		}
@@ -88,20 +99,25 @@ public class Frame extends JFrame implements Observer {
 
 	@Override
 	public void update(java.util.Observable o, Object arg) {
+		System.out.println("Update !");
 		for(int y = 0; y < tabC.length; y++) {
 			for(int x = 0; x < tabC[y].length; x++) {
+				if(y == gg.getPosition(p).y && x == gg.getPosition(p).x) {
+					//tabC[y][x].setBackground(Color.LIGHT_GRAY);
+				}else {
+					//tabC[y][x].setBackground(Color.CYAN);
+				}
+				
 				if(!icons.containsKey(gg.getCell(new Point(x,y)).imagePath))
 					icons.put((String) gg.getCell(new Point(x,y)).imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).imagePath));
-				if(!icons.containsKey(gg.getCell(new Point(x,y)).getOccupant().imagePath))
-					icons.put((String) gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
-				tabC[y][x].add(new JLabel(icons.get(gg.getCell(new Point(x,y)).imagePath)));
-				tabC[y][x].add(new JLabel(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath)));
-				if(y == gg.getPosition(p).y && x == gg.getPosition(p).x) {
-					tabC[y][x].setBackground(Color.LIGHT_GRAY);
-					
-				}else {
-					tabC[y][x].setBackground(Color.CYAN);
+				tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).imagePath));
+				if(gg.getCell(new Point(x,y)).getOccupant() != null) {
+					if(!icons.containsKey(gg.getCell(new Point(x,y)).getOccupant().imagePath))
+						icons.put((String) gg.getCell(new Point(x,y)).getOccupant().imagePath, new ImageIcon("asset/" + gg.getCell(new Point(x,y)).getOccupant().imagePath));
+					tabImageGroundC[y][x].setIcon(icons.get(gg.getCell(new Point(x,y)).getOccupant().imagePath));
+					System.out.println(gg.getCell(new Point(x,y)).getOccupant().imagePath);
 				}
+				
 			}
 		}
 	}

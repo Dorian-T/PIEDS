@@ -11,14 +11,6 @@ import main.model.grid.Direction;
  * @see Entity
  */
 public class Player extends Entity {
-	
-	// === Variables ===
-
-	/**
-	 * The path of the image of the player.
-	 */
-	public static final Object imagePath = "player.png";
-
 
 	// === Constructors ===
 
@@ -29,6 +21,7 @@ public class Player extends Entity {
 	 */
 	public Player(Cell cell) {
 		super(cell);
+		imagePath = "player.png";
 	}
 
 
