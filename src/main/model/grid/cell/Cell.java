@@ -2,12 +2,9 @@ package main.model.grid.cell;
 
 import java.util.Observable;
 
-//import main.model.Cell;
-//import main.model.Wall;
 import main.model.entity.Entity;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
-import main.model.grid.Point;
 
 
 /**
@@ -63,20 +60,6 @@ public class Cell extends Observable {
 
 	// === Methods ===
 
-	// public void move(Direction dir) { // C'est quoi ?
-	// 	if(dir == Direction.LEFT) { //tester si c'est possible ?
-	// 		x--; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-	// 	}else if(dir == Direction.RIGHT) { //tester si c'est possible ?
-	// 		x++; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-	// 	}else if(dir == Direction.UP) { //tester si c'est possible ?
-	// 		y--; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-	// 	}else if(dir == Direction.DOWN) { //tester si c'est possible ?
-	// 		y++; //prévoir de changer la distance a laquelle elle se déplace ? (au lieu de juste 1 par 1 px)
-	// 	}
-	// 	setChanged();
-	// 	notifyObservers();
-	// }
-
 	public boolean enter(Entity e, Direction dir) {
 		if(occupant == null) {
 			e.setDirection(dir);
@@ -92,11 +75,6 @@ public class Cell extends Observable {
 			return false;
 		}
 	}
-
-	// public boolean leave() {
-	// 	occupant = null;
-	// 	return true;
-	// }
 
 	public void begin() {
 		setChanged();

@@ -1,15 +1,10 @@
 package main.model.entity;
 
-import main.model.grid.cell.Cell;
-
 import java.util.Observable;
 
-//import main.model.Box;
-//import main.model.Entity;
-//import main.model.Player;
 import main.model.grid.Direction;
-import main.model.grid.GridGame;
-import main.model.grid.Point;
+import main.model.grid.cell.Cell;
+
 
 public abstract class Entity extends Observable{
 	Cell cell;
@@ -19,14 +14,10 @@ public abstract class Entity extends Observable{
 
 	// === Constructors ===
 
-	public Entity(Cell cell) {
+	protected Entity(Cell cell) {
 		this.cell = cell;
 		dir = Direction.LEFT;
 	}
-
-	/*public void move(Direction dir) {
-		gj.move(this, dir);
-	}*/
 
 	public void setDirection(Direction dir) {
 		this.dir = dir;
