@@ -1,9 +1,8 @@
 package main;
 
-import main.model.*;
-import main.model.grid.cell.Cell;
 import main.model.grid.GridGame;
 import main.view_controller.*;
+
 
 public class App {
 	public static void main(String[] args) throws Exception {

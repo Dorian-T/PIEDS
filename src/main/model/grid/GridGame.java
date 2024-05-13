@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import main.model.grid.Direction;
 import main.model.entity.Entity;
-import main.model.grid.Point;
 import main.model.entity.Player;
 import main.model.grid.cell.Cell;
 
@@ -18,7 +16,7 @@ import main.model.grid.cell.Cell;
 public class GridGame {
 
 	private Player p;
-	private Cell [][] tab;
+	private Cell[][] tab;
 	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
 
 	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
@@ -37,30 +35,10 @@ public class GridGame {
 				throw new IllegalArgumentException("Width and height must be positive.");
 
 			// Create the grid
-			tab = new Cell[height][width];
-			allPoint = new HashMap<>();
-			for(int i = 0; i < height; i++) {
-				line = br.readLine();
-				values = line.split(" ");
-				for(int j = 0; j < width; j++) {
-					tab[i][j] = Cell.loadCell(this, values[j].charAt(0));
-					allPoint.put(tab[i][j], new Point(i, j));
-				}
-			}
+			createGrid(br, width, height);
 
 			// Create the entities
-			for(int i = 0; i < height; i++) {
-				line = br.readLine();
-				values = line.split(" ");
-				for(int j = 0; j < width; j++) {
-					Entity e = Entity.loadEntity(values[j].charAt(0), tab[i][j]);
-					if(e != null) {
-						if(e instanceof Player)
-							p = (Player) e;
-						tab[i][j].enter(e, Direction.LEFT);
-					}
-				}
-			}
+			createEntities(br, width, height);
 		}
 		catch (FileNotFoundException e) {
 			throw new FileNotFoundException("File not found.");
@@ -70,6 +48,60 @@ public class GridGame {
 		}
 		catch (Exception e) {
 			throw new IllegalArgumentException(e.getMessage());
+		}
+	}
+
+	/**
+	 * Creates a grid based on the provided BufferedReader, width, and height.
+	 * Each line from the BufferedReader represents a row in the grid, and each value in the line represents a cell in the row.
+	 * The grid is stored in the 'tab' array, and the mapping of each cell to its corresponding Point is stored in the 'allPoint' HashMap.
+	 *
+	 * @param br     the BufferedReader used to read the grid data
+	 * @param width  the width of the grid
+	 * @param height the height of the grid
+	 * @throws IOException if an I/O error occurs while reading the grid data
+	 */
+	private void createGrid(BufferedReader br, int width, int height) throws IOException {
+		String line;
+		String[] values;
+
+		tab = new Cell[height][width];
+		allPoint = new HashMap<>();
+		for(int i = 0; i < height; i++) {
+			line = br.readLine();
+			values = line.split(" ");
+			for(int j = 0; j < width; j++) {
+				tab[i][j] = Cell.loadCell(this, values[j].charAt(0));
+				allPoint.put(tab[i][j], new Point(i, j));
+			}
+		}
+	}
+
+	/**
+	 * Creates the entities based on the provided BufferedReader, width, and height.
+	 * Each line from the BufferedReader represents a row in the grid, and each value in the line represents a cell in the row.
+	 * The entities are stored in the corresponding cells in the 'tab' array.
+	 *
+	 * @param br     the BufferedReader used to read the entities data
+	 * @param width  the width of the grid
+	 * @param height the height of the grid
+	 * @throws IOException if an I/O error occurs while reading the entities data
+	 */
+	private void createEntities(BufferedReader br, int width, int height) throws IOException {
+		String line;
+		String[] values;
+
+		for(int i = 0; i < height; i++) {
+			line = br.readLine();
+			values = line.split(" ");
+			for(int j = 0; j < width; j++) {
+				Entity e = Entity.loadEntity(values[j].charAt(0), tab[i][j]);
+				if(e != null) {
+					if(e instanceof Player)
+						p = (Player) e;
+					tab[i][j].enter(e, Direction.LEFT);
+				}
+			}
 		}
 	}
 
