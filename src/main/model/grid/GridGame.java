@@ -18,10 +18,10 @@ public class GridGame {
 	private Player p;
 	private Cell[][] tab;
 	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
+	private int height;
+	private int width;
 
 	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
-		int width, height;
-
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(filename)))) {
 			String line;
 			String[] values;
@@ -35,10 +35,10 @@ public class GridGame {
 				throw new IllegalArgumentException("Width and height must be positive.");
 
 			// Create the grid
-			createGrid(br, width, height);
+			createGrid(br);
 
 			// Create the entities
-			createEntities(br, width, height);
+			createEntities(br);
 		}
 		catch (FileNotFoundException e) {
 			throw new FileNotFoundException("File not found.");
@@ -61,7 +61,7 @@ public class GridGame {
 	 * @param height the height of the grid
 	 * @throws IOException if an I/O error occurs while reading the grid data
 	 */
-	private void createGrid(BufferedReader br, int width, int height) throws IOException {
+	private void createGrid(BufferedReader br) throws IOException {
 		String line;
 		String[] values;
 
@@ -87,7 +87,7 @@ public class GridGame {
 	 * @param height the height of the grid
 	 * @throws IOException if an I/O error occurs while reading the entities data
 	 */
-	private void createEntities(BufferedReader br, int width, int height) throws IOException {
+	private void createEntities(BufferedReader br) throws IOException {
 		String line;
 		String[] values;
 
@@ -107,6 +107,14 @@ public class GridGame {
 
 
 	// === Getters ===
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
 
 	public Player getPlayer() {
 		return p;
