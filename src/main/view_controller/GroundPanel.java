@@ -27,13 +27,11 @@ public class GroundPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         //c'est le moment de draw chaques images du sol
-        //g.drawImage(groundImage, 0, 0, this);
         for(int x = 0; x < gg.getWidth(); x++) {
         	for(int y = 0; y < gg.getHeight(); y++) {
             	Cell cellXY= gg.getCell(new Point(x,y));
             	if(!groundImages.containsKey(cellXY.imagePath)) {
             		Image temp = new ImageIcon("asset/" + cellXY.imagePath).getImage();
-            		//groundImages.put(cellXY.imagePath,temp);
             		groundImages.put(cellXY.imagePath, temp.getScaledInstance(Frame2.imageSize*Frame2.imageFactor, Frame2.imageSize*Frame2.imageFactor, Image.SCALE_DEFAULT));
             	}
             	Image img = groundImages.get(cellXY.imagePath);

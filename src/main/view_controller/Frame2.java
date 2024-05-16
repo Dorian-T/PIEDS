@@ -103,6 +103,10 @@ public class Frame2 extends JFrame implements Observer {
 	@Override
 	public void update(java.util.Observable o, Object arg) {
 		System.out.println("Update !");
+		/*if(gg.isWin()) {
+			System.out.println("Win");
+			dispose();
+		}*/
 		repaint();
 	}
 }
