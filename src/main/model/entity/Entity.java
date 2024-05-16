@@ -108,6 +108,7 @@ public abstract class Entity extends Observable{
 			cell = newCell;
 			return true;
 		}
+		System.out.println("yo chuis pas un player");
 		return false;
 	}
 }
