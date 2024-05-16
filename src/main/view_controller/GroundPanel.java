@@ -32,11 +32,11 @@ public class GroundPanel extends JPanel {
             	Cell cellXY= gg.getCell(new Point(x,y));
             	if(!groundImages.containsKey(cellXY.imagePath)) {
             		Image temp = new ImageIcon("asset/" + cellXY.imagePath).getImage();
-            		groundImages.put(cellXY.imagePath, temp.getScaledInstance(Frame2.imageSize*Frame2.imageFactor, Frame2.imageSize*Frame2.imageFactor, Image.SCALE_DEFAULT));
+            		groundImages.put(cellXY.imagePath, temp.getScaledInstance(Frame.imageSize*Frame.imageFactor, Frame.imageSize*Frame.imageFactor, Image.SCALE_DEFAULT));
             	}
             	Image img = groundImages.get(cellXY.imagePath);
-            	int xOnScreen = x*Frame2.imageSize*Frame2.imageFactor;
-            	int yOnScreen = y*Frame2.imageSize*Frame2.imageFactor;
+            	int xOnScreen = x*Frame.imageSize*Frame.imageFactor;
+            	int yOnScreen = y*Frame.imageSize*Frame.imageFactor;
             	g.drawImage(img, xOnScreen, yOnScreen, this);
             }
         }
