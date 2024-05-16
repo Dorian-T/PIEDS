@@ -62,6 +62,9 @@ public class Cell extends Observable {
 			case '.':
 				res = new Ground(grid);
 				break;
+			case 'b':
+				res = new BoxButton(grid);
+				break;
 			default:
 				throw new IllegalArgumentException("Invalid character for cell.");
 		}
