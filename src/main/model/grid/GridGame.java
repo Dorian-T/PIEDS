@@ -75,7 +75,7 @@ public class GridGame {
 			line = br.readLine();
 			values = line.split(" ");
 			for(int x = 0; x < width; x++) {
-				Cell c = Cell.loadCell(this, values[x].charAt(0));
+				Cell c = Cell.loadCell(this, values[x]);
 
 				// BoxButton
 				if(c instanceof BoxButton)
@@ -101,15 +101,15 @@ public class GridGame {
 		String line;
 		String[] values;
 
-		for(int i = 0; i < height; i++) {
+		for(int y = 0; y < height; y++) {
 			line = br.readLine();
 			values = line.split(" ");
-			for(int j = 0; j < width; j++) {
-				Entity e = Entity.loadEntity(values[j].charAt(0), tab[i][j]);
+			for(int x = 0; x < width; x++) {
+				Entity e = Entity.loadEntity(values[x], tab[y][x]);
 				if(e != null) {
 					if(e instanceof Player)
 						p = (Player) e;
-					tab[i][j].enter(e, Direction.LEFT);
+					tab[y][x].enter(e, Direction.LEFT);
 				}
 			}
 		}

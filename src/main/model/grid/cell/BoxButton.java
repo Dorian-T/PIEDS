@@ -1,8 +1,6 @@
 package main.model.grid.cell;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import main.model.Color;
 import main.model.entity.Box;
 import main.model.entity.Entity;
 import main.model.grid.Direction;
@@ -19,22 +17,40 @@ public class BoxButton extends Cell {
 
 	// === Variables ===
 
-	boolean activated; // True if the button is activated, false otherwise
+	/**
+	 * The color of the button
+	 */
+	Color color;
+
+	/**
+	 * True if the button is activated, false otherwise
+	 */
+	boolean activated;
 
 	
 	// === Constructors ===
 
 	/**
-	 * Constructor of the class Lever
+	 * Constructor of the class BoxButton
+	 *
+	 * @param grid
+	 * @param color
+	 */
+	public BoxButton(GridGame grid, Color color) {
+		super(grid);
+		this.color = color;
+		activated = false;
+		imagePath = "BoxButton.png";
+	}
+
+	/**
+	 * Constructor of the class BoxButton
 	 *
 	 * @param grid
 	 */
 	public BoxButton(GridGame grid) {
-		super(grid);
-		imagePath = "lever.png";
-		activated = false;
+		this(grid, Color.RED);
 	}
-
 
 	// === Methods ===
 
@@ -47,10 +63,19 @@ public class BoxButton extends Cell {
 		return activated;
 	}
 
+	/**
+	 * Enters an entity into the box button cell from a specified direction.
+	 * If the entity can enter the cell, it checks if it is a Box and if its color matches the button's color.
+	 * If the conditions are met, the button is activated.
+	 * 
+	 * @param e   the entity to enter the cell
+	 * @param dir the direction from which the entity is entering
+	 * @return true if the entity successfully enters the cell, false otherwise
+	 */
 	@Override
 	public boolean enter(Entity e, Direction dir) {
 		if (super.enter(e, dir)) {
-			activated = e instanceof Box; // TODO: ajouter la vérification de la couleur de la box
+			activated = (e instanceof Box && ((Box) e).getColor() == color);
 			return true;
 		}
 		else

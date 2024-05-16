@@ -2,6 +2,7 @@ package main.model.entity;
 
 import java.util.Observable;
 
+import main.model.Color;
 import main.model.grid.Direction;
 import main.model.grid.cell.Cell;
 
@@ -46,18 +47,21 @@ public abstract class Entity extends Observable{
 	/**
 	 * Load an entity from a character.
 	 *
-	 * @param c the character representing the entity
+	 * @param str the character representing the entity
 	 * @param cell the cell where the entity is
 	 * @return the entity corresponding to the character
 	 */
-	public static Entity loadEntity(char c, Cell cell) {
+	public static Entity loadEntity(String str, Cell cell) {
 		Entity res = null;
-		switch(c) {
+		switch(str.charAt(0)) {
 			case 'p':
 				res = new Player(cell);
 				break;
 			case 'b':
-				res = new Box(cell);
+				if(str.length() == 1)
+					res = new Box(cell);
+				else
+					res = new Box(cell, Color.fromChar(str.charAt(1)));
 				break;
 			case '.': // empty cell
 				break;
