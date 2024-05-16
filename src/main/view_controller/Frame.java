@@ -18,7 +18,6 @@ import main.model.entity.Player;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
 import main.model.grid.Point;
-import main.model.grid.cell.Cell;
 
 
 public class Frame extends JFrame implements Observer {

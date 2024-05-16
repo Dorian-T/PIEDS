@@ -67,12 +67,12 @@ public class GridGame {
 
 		tab = new Cell[height][width];
 		allPoint = new HashMap<>();
-		for(int i = 0; i < height; i++) {
+		for(int y = 0; y < height; y++) {
 			line = br.readLine();
 			values = line.split(" ");
-			for(int j = 0; j < width; j++) {
-				tab[i][j] = Cell.loadCell(this, values[j].charAt(0));
-				allPoint.put(tab[i][j], new Point(i, j));
+			for(int x = 0; x < width; x++) {
+				tab[y][x] = Cell.loadCell(this, values[x].charAt(0));
+				allPoint.put(tab[y][x], new Point(x, y));
 			}
 		}
 	}
@@ -120,13 +120,13 @@ public class GridGame {
 		Point cellCoordinates = allPoint.get(cell);
 		switch(dir) {
 			case UP:
-				return tab[cellCoordinates.x][cellCoordinates.y - 1];
+				return tab[cellCoordinates.y - 1][cellCoordinates.x];
 			case DOWN:
-				return tab[cellCoordinates.x][cellCoordinates.y + 1];
+				return tab[cellCoordinates.y + 1][cellCoordinates.x];
 			case LEFT:
-				return tab[cellCoordinates.x - 1][cellCoordinates.y];
+				return tab[cellCoordinates.y][cellCoordinates.x - 1];
 			case RIGHT:
-				return tab[cellCoordinates.x + 1][cellCoordinates.y];
+				return tab[cellCoordinates.y][cellCoordinates.x + 1];
 			default:
 				return null;
 		}
@@ -140,10 +140,10 @@ public class GridGame {
 	}
 
 	public Point getPosition(Entity e) {
-		for(int i = 0; i < tab.length; i++) {
-			for(int j = 0; j < tab[0].length; j++) {
-				if(tab[i][j].getOccupant() != null && tab[i][j].getOccupant().equals(e)) {
-					return new Point(i,j);
+		for(int y = 0; y < tab.length; y++) {
+			for(int x = 0; x < tab[0].length; x++) {
+				if(tab[y][x].getOccupant() != null && tab[y][x].getOccupant().equals(e)) {
+					return new Point(x,y);
 				}
 			}
 		}
