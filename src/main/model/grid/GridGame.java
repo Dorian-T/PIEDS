@@ -5,12 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import main.model.entity.Entity;
-import main.model.entity.Player;
-import main.model.grid.cell.Cell;
+import main.model.entity.*;
+import main.model.grid.cell.*;
 
 
 public class GridGame {
@@ -20,6 +21,7 @@ public class GridGame {
 	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
 	private int height;
 	private int width;
+	private List<BoxButton> boxButtons; // TODO: test if the buttons are activated
 
 	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(filename)))) {
@@ -67,11 +69,19 @@ public class GridGame {
 
 		tab = new Cell[height][width];
 		allPoint = new HashMap<>();
+		boxButtons = new ArrayList<>();
+
 		for(int y = 0; y < height; y++) {
 			line = br.readLine();
 			values = line.split(" ");
 			for(int x = 0; x < width; x++) {
-				tab[y][x] = Cell.loadCell(this, values[x].charAt(0));
+				Cell c = Cell.loadCell(this, values[x].charAt(0));
+
+				// BoxButton
+				if(c instanceof BoxButton)
+					boxButtons.add((BoxButton) c);
+
+				tab[y][x] = c;
 				allPoint.put(tab[y][x], new Point(x, y));
 			}
 		}
@@ -156,6 +166,13 @@ public class GridGame {
 			}
 		}
 		return null;
+	}
+
+	public boolean isWin() {
+		for(BoxButton bb : boxButtons)
+			if(!bb.isActivated())
+				return false;
+		return true;
 	}
 
 	// public void seDeplacer(Entity e, Direction dir) {

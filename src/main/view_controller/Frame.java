@@ -140,6 +140,10 @@ public class Frame extends JFrame implements Observer {
 	@Override
 	public void update(java.util.Observable o, Object arg) {
 		System.out.println("Update !");
+		if(gg.isWin()) {
+			System.out.println("Win !");
+			dispose();
+		}
 		for(int y = 0; y < tabC.length; y++) {
 			for(int x = 0; x < tabC[y].length; x++) {
 				if(!icons.containsKey(gg.getCell(new Point(x,y)).imagePath))
