@@ -26,7 +26,8 @@ import main.model.grid.cell.Cell;
 public class Frame2 extends JFrame implements Observer {
 	private static final int W = 16;
 	private static final int H = 9;
-	public static final int imageSize = 32;
+	public static final int imageSize = 24;
+	public static final int imageFactor = 3;
 	private GroundPanel gp;
 	private EntityPanel ep;
 	private Player p;
@@ -49,14 +50,24 @@ public class Frame2 extends JFrame implements Observer {
 
     public void build2(GroundPanel gp, EntityPanel ep) {
     	setTitle("Image Layers");
-        setSize(W*imageSize, H*imageSize);
+        setSize(W*imageSize*imageFactor+50, H*imageSize*imageFactor+50);
         
         setLayout(new BorderLayout());
         
-        add(gp, BorderLayout.CENTER);
-        add(ep, BorderLayout.CENTER);
+        /*add(gp, BorderLayout.CENTER);
+        add(ep, BorderLayout.CENTER);*/
+
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(getSize());
+
+        gp.setBounds(0, 0, W * imageSize*imageFactor, H * imageSize*imageFactor);
+        ep.setBounds(0, 0, W * imageSize*imageFactor, H * imageSize*imageFactor);
         
         
+        layeredPane.add(gp, Integer.valueOf(0));
+        layeredPane.add(ep, Integer.valueOf(1));
+
+        add(layeredPane, BorderLayout.CENTER);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
