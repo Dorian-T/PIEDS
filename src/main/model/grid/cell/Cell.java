@@ -30,7 +30,7 @@ public class Cell extends Observable {
 	/**
 	 * The path of the image of an empty cell.
 	 */
-	public Object imagePath;
+	public String imagePath;
 
 
 	// === Constructors ===
@@ -122,7 +122,9 @@ public class Cell extends Observable {
 		}
 		else {
 			Cell newCell = grid.getCell(this, dir);
-			if(newCell.enter(e, dir)) {
+			if(newCell.enter(occupant, dir)) {
+				e.setDirection(dir);
+				e.getCell().setOccupant(null);
 				occupant = e;
 				return true;
 			}
