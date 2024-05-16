@@ -2,6 +2,7 @@ package main.model.grid.cell;
 
 import java.util.Observable;
 
+import main.model.Color;
 import main.model.entity.Entity;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
@@ -49,13 +50,13 @@ public class Cell extends Observable {
 	 * Load a cell from a character.
 	 *
 	 * @param grid the grid where the cell is
-	 * @param c the character representing the cell
+	 * @param str the character representing the cell
 	 * @return the cell corresponding to the character
 	 * @throws IllegalArgumentException if the character is invalid
 	 */
-	public static Cell loadCell(GridGame grid, char c) throws IllegalArgumentException {
+	public static Cell loadCell(GridGame grid, String str) throws IllegalArgumentException {
 		Cell res = null;
-		switch(c) {
+		switch(str.charAt(0)) {
 			case '#':
 				res = new Wall(grid);
 				break;
@@ -63,7 +64,10 @@ public class Cell extends Observable {
 				res = new Ground(grid);
 				break;
 			case 'b':
-				res = new BoxButton(grid);
+				if(str.length() == 1)
+					res = new BoxButton(grid);
+				else
+					res = new BoxButton(grid, Color.fromChar(str.charAt(1)));
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid character for cell.");
