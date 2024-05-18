@@ -72,10 +72,12 @@ public class Frame extends JFrame implements Observer {
 					case KeyEvent.VK_LEFT:
 					case KeyEvent.VK_Q:
 						p.moveTo(Direction.LEFT);
+						System.out.println("player mooves");
 						break;
 					case KeyEvent.VK_RIGHT:
 					case KeyEvent.VK_D:
 						p.moveTo(Direction.RIGHT);
+						System.out.println("player mooves");
 						break;
 					case KeyEvent.VK_UP:
 					case KeyEvent.VK_Z:
