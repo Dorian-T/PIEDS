@@ -54,14 +54,17 @@ public abstract class Entity extends Observable{
 	public static Entity loadEntity(String str, Cell cell) {
 		Entity res = null;
 		switch(str.charAt(0)) {
-			case 'p':
-				res = new Player(cell);
-				break;
 			case 'b':
 				if(str.length() == 1)
 					res = new Box(cell);
 				else
 					res = new Box(cell, Color.fromChar(str.charAt(1)));
+				break;
+			case 'p':
+				res = new Player(cell);
+				break;
+			case 'o':
+				res = new Obstacle(cell);
 				break;
 			case '.': // empty cell
 				break;
