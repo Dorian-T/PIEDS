@@ -15,8 +15,8 @@ import main.model.grid.GridGame;
 
 
 public class Frame extends JFrame implements Observer {
-	private static final int W = 16;
-	private static final int H = 9;
+	private int width;
+	private int height;
 	public static final int IMAGE_SIZE = 24;
 	public static final int IMAGE_FACTOR = 3;
 	private CellPanel cellPanel;
@@ -25,8 +25,10 @@ public class Frame extends JFrame implements Observer {
 	private GridGame gg;
 	private static int animationCounter = 0;
 
-	public Frame(GridGame gg) {
+	public Frame(GridGame gg, int width, int height) {
 		this.gg = gg;
+		this.width = width;
+		this.height = height;
 		this.player = gg.getPlayer();
 		cellPanel = new CellPanel(gg);
 		entityPanel = new EntityPanel(gg);
@@ -43,12 +45,12 @@ public class Frame extends JFrame implements Observer {
 
 		JLayeredPane layeredPane = new JLayeredPane();
 
-		int width = W * IMAGE_SIZE * IMAGE_FACTOR;
-		int height = H * IMAGE_SIZE * IMAGE_FACTOR;
-		gp.setBounds(0, 0, width, height);
-		ep.setBounds(0, 0, width, height);
+		int windoWidth = width * IMAGE_SIZE * IMAGE_FACTOR;
+		int windowHeight = height * IMAGE_SIZE * IMAGE_FACTOR;
+		gp.setBounds(0, 0, windoWidth, windowHeight);
+		ep.setBounds(0, 0, windoWidth, windowHeight);
 
-		layeredPane.setPreferredSize(new Dimension(width, height));
+		layeredPane.setPreferredSize(new Dimension(windoWidth, windowHeight));
 
 		layeredPane.add(gp, Integer.valueOf(0));
 		layeredPane.add(ep, Integer.valueOf(1));
