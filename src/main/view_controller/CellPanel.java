@@ -88,7 +88,7 @@ public class CellPanel extends BasePanel {
 		if(cell.imagePath == null)
 			return null;
 		if(cell instanceof BoxButton)
-			return "asset/" + ((BoxButton) cell).getColor() + "-" + cell.imagePath;
-		return "asset/" + cell.imagePath;
+			return "data/assets/" + ((BoxButton) cell).getColor() + "-" + cell.imagePath;
+		return "data/assets/" + cell.imagePath;
 	}
 }

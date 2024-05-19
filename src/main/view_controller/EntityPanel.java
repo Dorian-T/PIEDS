@@ -66,8 +66,8 @@ public class EntityPanel extends BasePanel {
 	protected String getPath(Object param) {
 		Entity entity = (Entity) param;
 		if(entity instanceof Box)
-			return "asset/" + ((Box) entity).getColor() + "-" + entity.imagePath;
-		return "asset/" + entity.imagePath;
+			return "data/assets/" + ((Box) entity).getColor() + "-" + entity.imagePath;
+		return "data/assets/" + entity.imagePath;
 	}
 
 	/**

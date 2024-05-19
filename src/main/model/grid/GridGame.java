@@ -166,6 +166,13 @@ public class GridGame {
 		return tab[p.y][p.x];
 	}
 
+	/**
+	 * Returns the adjacent cell based on the provided cell and direction.
+	 * 
+	 * @param cell the cell to get the adjacent cell from
+	 * @param dir  the direction of the adjacent cell
+	 * @return the adjacent cell based on the provided cell and direction
+	 */
 	public Cell getCell(Cell cell, Direction dir) {
 		Point cellCoordinates = allPoint.get(cell);
 		switch(dir) {
@@ -214,18 +221,15 @@ public class GridGame {
 		return true;
 	}
 
-	// public void seDeplacer(Entity e, Direction dir) {
-	// 	Point pe = getPosition(e);
-	// 	Cell cible = getCible(pe,dir);
-	// 	cible.enter(e, dir);
-	// 	//setChanged();
-	// 	//notifyObservers(...);
-	// }
-
-	// public void moveHero(Direction d) {
-	// 	Cell cCible = getCible(getPosition(p),d);
-	// 	p.moveTo(cCible, d);
-	// 	//setChanged();
-	// 	//notifyObservers(...);
-	// }
+	public void reset() {
+		try {
+			initialize(levelFilename);
+		}
+		catch (FileNotFoundException e) {
+			System.err.println("File not found.");
+		}
+		catch (IllegalArgumentException e) {
+			System.err.println(e.getMessage());
+		}
+	}
 }
