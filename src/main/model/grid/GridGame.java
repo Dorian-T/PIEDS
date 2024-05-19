@@ -21,9 +21,20 @@ public class GridGame {
 	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
 	private int height;
 	private int width;
-	private List<BoxButton> boxButtons; // TODO: test if the buttons are activated
+	private List<BoxButton> boxButtons;
+	private String levelFilename;
 
 	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
+		levelFilename = filename;
+		initialize(filename);
+	}
+
+	/**
+	 * Initializes the grid game with the provided filename.
+	 *
+	 * @param filename the filename of the level to load
+	 */
+	private void initialize(String filename) throws FileNotFoundException, IllegalArgumentException {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(filename)))) {
 			String line;
 			String[] values;
@@ -118,18 +129,39 @@ public class GridGame {
 
 	// === Getters ===
 
+	/**
+	 * Returns the height of the grid.
+	 *
+	 * @return the height of the grid
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Returns the width of the grid.
+	 *
+	 * @return the width of the grid
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Returns the player object.
+	 *
+	 * @return the player object
+	 */
 	public Player getPlayer() {
 		return p;
 	}
 
+	/**
+	 * Returns the cell at the specified point.
+	 *
+	 * @param p the point representing the coordinates of the cell
+	 * @return the cell at the specified point
+	 */
 	public Cell getCell(Point p) {
 		return tab[p.y][p.x];
 	}
@@ -153,10 +185,12 @@ public class GridGame {
 
 	// === Methods ===
 
-	public void move(Entity entity, Direction dir) {
-		// TODO Auto-generated method stub
-	}
-
+	/**
+	 * Get the position of the entity in the grid.
+	 * 
+	 * @param e the entity to get the position of
+	 * @return the position of the entity in the grid
+	 */
 	public Point getPosition(Entity e) {
 		for(int y = 0; y < tab.length; y++) {
 			for(int x = 0; x < tab[0].length; x++) {
@@ -168,6 +202,11 @@ public class GridGame {
 		return null;
 	}
 
+	/**
+	 * Checks if the game has been won.
+	 * 
+	 * @return true if all box buttons are activated, false otherwise
+	 */
 	public boolean isWin() {
 		for(BoxButton bb : boxButtons)
 			if(!bb.isActivated())
