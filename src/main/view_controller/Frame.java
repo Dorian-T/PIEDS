@@ -1,6 +1,7 @@
 package main.view_controller;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Observer;
@@ -31,29 +32,33 @@ public class Frame extends JFrame implements Observer {
 		cellPanel = new CellPanel(gg);
 		entityPanel = new EntityPanel(gg);
 		// Configurer la fenêtre principale
-		build2(cellPanel, entityPanel);
+		build(cellPanel, entityPanel);
 
 		addKeyboardListener();
 		setVisible(true);
 	}
 
-	public void build2(CellPanel gp, EntityPanel ep) {
+	public void build(CellPanel gp, EntityPanel ep) {
 		setTitle("Image Layers");
-		setSize(W*IMAGE_SIZE*IMAGE_FACTOR+50, H*IMAGE_SIZE*IMAGE_FACTOR+50);
 
 		setLayout(new BorderLayout());
 
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(getSize());
 
-		gp.setBounds(0, 0, W * IMAGE_SIZE*IMAGE_FACTOR, H * IMAGE_SIZE*IMAGE_FACTOR);
-		ep.setBounds(0, 0, W * IMAGE_SIZE*IMAGE_FACTOR, H * IMAGE_SIZE*IMAGE_FACTOR);
+		int width = W * IMAGE_SIZE * IMAGE_FACTOR;
+		int height = H * IMAGE_SIZE * IMAGE_FACTOR;
+		gp.setBounds(0, 0, width, height);
+		ep.setBounds(0, 0, width, height);
+
+		layeredPane.setPreferredSize(new Dimension(width, height));
 
 		layeredPane.add(gp, Integer.valueOf(0));
 		layeredPane.add(ep, Integer.valueOf(1));
 
 		add(layeredPane, BorderLayout.CENTER);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+		pack();
 	}
 
 	private void addKeyboardListener() {
@@ -79,9 +84,10 @@ public class Frame extends JFrame implements Observer {
 					case KeyEvent.VK_S:
 						player.moveTo(Direction.DOWN);
 						break;
-					case KeyEvent.VK_R:
-						gg.reset();
-						break;
+					// case KeyEvent.VK_R: // TODO: debug
+					// 	gg.reset();
+					// 	player = gg.getPlayer();
+					// 	break;
 					default:
 						break;
 				}
