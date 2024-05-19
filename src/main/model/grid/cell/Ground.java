@@ -1,8 +1,6 @@
 package main.model.grid.cell;
 
-import main.model.grid.Direction;
 import main.model.grid.GridGame;
-import main.model.entity.Entity;
 
 
 /**
@@ -13,10 +11,6 @@ import main.model.entity.Entity;
  */
 public class Ground extends Cell {
 
-	// === Variables ===
-
-
-
 	// === Constructors ===
 
 	/**
@@ -26,8 +20,7 @@ public class Ground extends Cell {
 	 */
 	public Ground(GridGame grid) {
 		super(grid);
-		imagePath = "ground.png";
-		// TODO Auto-generated constructor stub
+		imagePath = "grass.png";
 	}
 
 }

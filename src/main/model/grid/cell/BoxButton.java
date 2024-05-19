@@ -40,7 +40,7 @@ public class BoxButton extends Cell {
 		super(grid);
 		this.color = color;
 		activated = false;
-		imagePath = "BoxButton.png";
+		imagePath = "flag.png";
 	}
 
 	/**
@@ -51,6 +51,19 @@ public class BoxButton extends Cell {
 	public BoxButton(GridGame grid) {
 		this(grid, Color.RED);
 	}
+
+
+	// === Getters ===
+
+	/**
+	 * Returns the color of the button.
+	 *
+	 * @return the color of the button
+	 */
+	public Color getColor() {
+		return color;
+	}
+
 
 	// === Methods ===
 

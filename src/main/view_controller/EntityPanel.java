@@ -37,12 +37,12 @@ public class EntityPanel extends JPanel {
 					if (!entityImages.containsKey(occupant.imagePath)) {
 						Image temp = new ImageIcon("asset/" + occupant.imagePath).getImage();
 						entityImages.put(occupant.imagePath,
-								temp.getScaledInstance(Frame.imageSize * Frame.imageFactor,
-										Frame.imageSize * Frame.imageFactor, Image.SCALE_DEFAULT));
+								temp.getScaledInstance(Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR,
+										Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR, Image.SCALE_DEFAULT));
 					}
 					Image img = entityImages.get(occupant.imagePath);
-					int xOnScreen = x * Frame.imageSize * Frame.imageFactor;
-					int yOnScreen = y * Frame.imageSize * Frame.imageFactor;
+					int xOnScreen = x * Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR;
+					int yOnScreen = y * Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR;
 					g.drawImage(img, xOnScreen, yOnScreen, this);
             	}
             	

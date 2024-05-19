@@ -19,4 +19,9 @@ public enum Color {
 				return color;
 		throw new IllegalArgumentException("No color with id: " + id + " found");
 	}
+
+	@Override
+	public String toString() {
+		return this.name().toLowerCase();
+	}
 }
