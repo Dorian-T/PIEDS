@@ -63,9 +63,6 @@ public abstract class Entity extends Observable{
 			case 'p':
 				res = new Player(cell);
 				break;
-			case 'o':
-				res = new Obstacle(cell);
-				break;
 			case '.': // empty cell
 				break;
 			default:
