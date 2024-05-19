@@ -20,7 +20,7 @@ public class Ground extends Cell {
 	 */
 	public Ground(GridGame grid) {
 		super(grid);
-		imagePath = "grass.png";
+		imagePath = null;
 	}
 
 }
