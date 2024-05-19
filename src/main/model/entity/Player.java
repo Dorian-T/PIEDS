@@ -18,13 +18,11 @@ public class Player extends Entity {
 	 *
 	 * @param cell the cell where the player is
 	 */
-
-	int indexImage = 0;
-
 	public Player(Cell cell) {
 		super(cell);
-		imagePath = "player_right0.png";
+		imagePath = "baba.png";
 	}
+
 
 	// === Methods ===
 
@@ -43,23 +41,8 @@ public class Player extends Entity {
 			cell = newCell;
 			setChanged();
 			notifyObservers();
-			switch (dir) {
-			case LEFT:
-				indexImage++;
-				imagePath = "player_left" + indexImage % 2 + ".png";
-				System.out.println("player mooved");
-				break;
-			case RIGHT:
-				indexImage++;
-				imagePath = "player_right" + indexImage % 2 + ".png";
-				System.out.println("player mooved");
-				break;
-			default:
-				break;
-			}
 			return true;
 		}
-
 		return false;
 	}
 }

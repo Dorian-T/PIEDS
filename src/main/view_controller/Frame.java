@@ -18,25 +18,26 @@ public class Frame extends JFrame implements Observer {
 	private static final int H = 9;
 	public static final int IMAGE_SIZE = 24;
 	public static final int IMAGE_FACTOR = 3;
-	private GroundPanel gp;
-	private EntityPanel ep;
-	private Player p;
+	private CellPanel cellPanel;
+	private EntityPanel entityPanel;
+	private Player player;
 	private GridGame gg;
+	private static int animationCounter = 0;
 
 	public Frame(GridGame gg) {
 		// Charger les images
 		this.gg = gg;
-		this.p = gg.getPlayer();
-		gp = new GroundPanel(gg);
-		ep = new EntityPanel(gg);
+		this.player = gg.getPlayer();
+		cellPanel = new CellPanel(gg);
+		entityPanel = new EntityPanel(gg);
 		// Configurer la fenêtre principale
-		build2(gp, ep);
+		build2(cellPanel, entityPanel);
 
 		addKeyboardListener();
 		setVisible(true);
 	}
 
-	public void build2(GroundPanel gp, EntityPanel ep) {
+	public void build2(CellPanel gp, EntityPanel ep) {
 		setTitle("Image Layers");
 		setSize(W*IMAGE_SIZE*IMAGE_FACTOR+50, H*IMAGE_SIZE*IMAGE_FACTOR+50);
 
@@ -62,21 +63,24 @@ public class Frame extends JFrame implements Observer {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_LEFT:
 					case KeyEvent.VK_Q:
-						p.moveTo(Direction.LEFT);
+						player.moveTo(Direction.LEFT);
 						System.out.println("player mooves");
 						break;
 					case KeyEvent.VK_RIGHT:
 					case KeyEvent.VK_D:
-						p.moveTo(Direction.RIGHT);
+						player.moveTo(Direction.RIGHT);
 						System.out.println("player mooves");
 						break;
 					case KeyEvent.VK_UP:
 					case KeyEvent.VK_Z:
-						p.moveTo(Direction.UP);
+						player.moveTo(Direction.UP);
 						break;
 					case KeyEvent.VK_DOWN:
 					case KeyEvent.VK_S:
-						p.moveTo(Direction.DOWN);
+						player.moveTo(Direction.DOWN);
+						break;
+					case KeyEvent.VK_R:
+						gg.reset();
 						break;
 					default:
 						break;
@@ -93,6 +97,16 @@ public class Frame extends JFrame implements Observer {
 			System.out.println("Win");
 			dispose();
 		}
+		animationCounter = (animationCounter + 1) % 3;
 		repaint();
+	}
+
+	/**
+	 * Returns the value of the animation counter.
+	 *
+	 * @return the value of the animation counter
+	 */
+	public static int getAnimationCounter() {
+		return animationCounter;
 	}
 }

@@ -87,6 +87,15 @@ public abstract class Entity extends Observable{
 		return cell;
 	}
 
+	/**
+	 * Returns the direction of the entity.
+	 *
+	 * @return the direction of the entity
+	 */
+	public Direction getDirection() {
+		return dir;
+	}
+
 
 	// === Setters ===
 
