@@ -51,4 +51,14 @@ public class Box extends Entity {
 	public Color getColor() {
 		return color;
 	}
+
+	/**
+	 * Returns the path of the image of the box.
+	 *
+	 * @return the path of the image of the box
+	 */
+	@Override
+	public String getImagePath() {
+		return color + "-" + imagePath;
+	}
 }

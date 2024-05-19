@@ -3,7 +3,6 @@ package main.view_controller;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import main.model.entity.Box;
 import main.model.entity.Entity;
 import main.model.entity.Player;
 import main.model.grid.GridGame;
@@ -45,13 +44,13 @@ public class EntityPanel extends BasePanel {
 
 						// If the image is not already loaded, load it
 						if(!images.containsKey(path)) {
-							loadImage(path, 3, (entityXY instanceof Player) ? 4 : 1);
+							loadImage(path, 3, (entityXY instanceof Player) ? 4 : 1); // TODO: remove the instanceof
 						}
 
 						// Draw the image
 						subImg = images.get(path);
 						if(subImg != null) {
-							drawImg(g, subImg, x, y, Frame.getAnimationCounter(), directionOffset(entityXY));
+							drawImg(g, subImg, x, y, Frame.getAnimationCounter(), entityXY.getVersion());
 						}
 					}
 				}
@@ -64,35 +63,9 @@ public class EntityPanel extends BasePanel {
 
 	@Override
 	protected String getPath(Object param) {
-		Entity entity = (Entity) param;
-		if(entity instanceof Box)
-			return "data/assets/" + ((Box) entity).getColor() + "-" + entity.imagePath;
-		return "data/assets/" + entity.imagePath;
-	}
-
-	/**
-	 * Returns the orientation offset of the entity.
-	 * 
-	 * @param entity the entity whose orientation offset is to be determined
-	 * @return the orientation offset of the entity
-	 */
-	private int directionOffset(Entity entity) {
-		if(entity instanceof Player) {
-			switch(entity.getDirection()) {
-				case UP:
-					return 0;
-				case RIGHT:
-					return 1;
-				case DOWN:
-					return 2;
-				case LEFT:
-					return 3;
-				default:
-					return 1;
-			}
-		}
-		else {
-			return 0;
-		}
+		String path = ((Entity) param).getImagePath();
+		if(path  == null)
+			return null;
+		return "data/assets/" + path;
 	}
 }

@@ -21,6 +21,26 @@ public class Player extends Entity {
 	public Player(Cell cell) {
 		super(cell);
 		imagePath = "baba.png";
+		version = 3;
+	}
+
+
+	// === Getters ===
+
+	@Override
+	public int getVersion() {
+		switch(direction) {
+			case UP:
+				return 0;
+			case RIGHT:
+				return 1;
+			case DOWN:
+				return 2;
+			case LEFT:
+				return 3;
+			default:
+				return 2;
+		}
 	}
 
 

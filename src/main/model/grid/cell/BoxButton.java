@@ -64,6 +64,16 @@ public class BoxButton extends Cell {
 		return color;
 	}
 
+	/**
+	 * Returns the path of the image of the button.
+	 *
+	 * @return the path of the image of the button
+	 */
+	@Override
+	public String getImagePath() {
+		return color + "-" + imagePath;
+	}
+
 
 	// === Methods ===
 

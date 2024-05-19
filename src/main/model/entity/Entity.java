@@ -12,7 +12,7 @@ import main.model.grid.cell.Cell;
  *
  * @see Observable
  */
-public abstract class Entity extends Observable{
+public abstract class Entity extends Observable {
 
 	// === Variables ===
 
@@ -24,12 +24,17 @@ public abstract class Entity extends Observable{
 	/**
 	 * The direction of the entity.
 	 */
-	protected Direction dir;
+	protected Direction direction;
 
 	/**
-	 * The path of the image of a default entity.
+	 * The path of the image of a the entity.
 	 */
-	public String imagePath;
+	protected String imagePath;
+
+	/**
+	 * The id of the curent version of the image of the entity.
+	 */
+	protected int version;
 
 
 	// === Constructors ===
@@ -41,7 +46,8 @@ public abstract class Entity extends Observable{
 	 */
 	protected Entity(Cell cell) {
 		this.cell = cell;
-		dir = Direction.LEFT;
+		direction = Direction.LEFT;
+		version = 0;
 	}
 
 	/**
@@ -90,7 +96,25 @@ public abstract class Entity extends Observable{
 	 * @return the direction of the entity
 	 */
 	public Direction getDirection() {
-		return dir;
+		return direction;
+	}
+
+	/**
+	 * Returns the path of the image of the entity.
+	 *
+	 * @return the path of the image of the entity
+	 */
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	/**
+	 * Returns the id of the current version of the image of the entity.
+	 *
+	 * @return the id of the current version of the image of the entity
+	 */
+	public int getVersion() {
+		return version;
 	}
 
 
@@ -102,7 +126,7 @@ public abstract class Entity extends Observable{
 	 * @param dir
 	 */
 	public void setDirection(Direction dir) {
-		this.dir = dir;
+		this.direction = dir;
 	}
 
 

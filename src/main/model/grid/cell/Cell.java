@@ -33,6 +33,11 @@ public class Cell extends Observable {
 	 */
 	public String imagePath;
 
+	/**
+	 * The id of the curent version of the image of the cell.
+	 */
+	protected int version;
+
 
 	// === Constructors ===
 
@@ -44,6 +49,7 @@ public class Cell extends Observable {
 	public Cell(GridGame grid) {
 		this.grid = grid;
 		occupant = null;
+		version = 0;
 	}
 
 	/**
@@ -76,18 +82,6 @@ public class Cell extends Observable {
 	}
 
 
-	// === Setters ===
-
-	/**
-	 * Sets the occupant of the cell.
-	 *
-	 * @param occupant the new occupant of the cell
-	 */
-	public void setOccupant(Entity occupant) {
-		this.occupant = occupant;
-	}
-
-
 	// === Getters ===
 
 	/**
@@ -97,6 +91,36 @@ public class Cell extends Observable {
 	 */
 	public Entity getOccupant() {
 		return occupant;
+	}
+
+	/**
+	 * Returns the path of the image of the cell.
+	 *
+	 * @return the path of the image of the cell
+	 */
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	/**
+	 * Returns the id of the current version of the image of the cell.
+	 *
+	 * @return the id of the current version of the image of the cell
+	 */
+	public int getVersion() {
+		return version;
+	}
+
+
+	// === Setters ===
+
+	/**
+	 * Sets the occupant of the cell.
+	 *
+	 * @param occupant the new occupant of the cell
+	 */
+	public void setOccupant(Entity occupant) {
+		this.occupant = occupant;
 	}
 
 	/**

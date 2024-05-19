@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 import main.model.grid.GridGame;
 import main.model.grid.Point;
-import main.model.grid.cell.BoxButton;
 import main.model.grid.cell.Cell;
 
 
@@ -64,7 +63,7 @@ public class CellPanel extends BasePanel {
 					// Draw the image
 					subImg = images.get(path);
 					if(subImg != null) {
-						drawImg(g, subImg, x, y, Frame.getAnimationCounter(), 0);
+						drawImg(g, subImg, x, y, Frame.getAnimationCounter(), cellXY.getVersion());
 					}
 				}
 			}
@@ -84,11 +83,9 @@ public class CellPanel extends BasePanel {
 	 */
 	@Override
 	protected String getPath(Object param) {
-		Cell cell = (Cell) param;
-		if(cell.imagePath == null)
+		String path = ((Cell) param).getImagePath();
+		if(path  == null)
 			return null;
-		if(cell instanceof BoxButton)
-			return "data/assets/" + ((BoxButton) cell).getColor() + "-" + cell.imagePath;
-		return "data/assets/" + cell.imagePath;
+		return "data/assets/" + path;
 	}
 }
