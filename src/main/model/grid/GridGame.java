@@ -22,6 +22,8 @@ public class GridGame {
 	private int height;
 	private int width;
 	private List<BoxButton> boxButtons;
+	private List<Door> doors;
+	private List<Key> keys;
 	private String levelFilename;
 
 	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
@@ -81,6 +83,8 @@ public class GridGame {
 		tab = new Cell[height][width];
 		allPoint = new HashMap<>();
 		boxButtons = new ArrayList<>();
+		doors = new ArrayList<>();
+		keys = new ArrayList<>();
 
 		for(int y = 0; y < height; y++) {
 			line = br.readLine();
@@ -88,9 +92,13 @@ public class GridGame {
 			for(int x = 0; x < width; x++) {
 				Cell c = Cell.loadCell(this, values[x]);
 
-				// BoxButton
+				// Add the cell to the corresponding list
 				if(c instanceof BoxButton)
 					boxButtons.add((BoxButton) c);
+				if(c instanceof Door)
+					doors.add((Door) c);
+				if(c instanceof Key)
+					keys.add((Key) c);
 
 				tab[y][x] = c;
 				allPoint.put(tab[y][x], new Point(x, y));
@@ -219,6 +227,15 @@ public class GridGame {
 			if(!bb.isActivated())
 				return false;
 		return true;
+	}
+
+	public void updateDoors() {
+		boolean allKeys = true;
+		for(Key k : keys)
+			if(!k.isPickedUp())
+				allKeys = false;
+		for(Door d : doors)
+			d.setOpen(allKeys);
 	}
 
 	public void reset() {

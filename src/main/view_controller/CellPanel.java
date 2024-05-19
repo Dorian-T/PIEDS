@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import main.model.grid.GridGame;
 import main.model.grid.Point;
 import main.model.grid.cell.Cell;
+import main.model.grid.cell.Door;
 
 
 /**
@@ -50,14 +51,14 @@ public class CellPanel extends BasePanel {
 		try {
 			super.paintComponent(g);
 
-			for(int x = 0; x < gg.getWidth(); x++) {
-				for(int y = 0; y < gg.getHeight(); y++) {
+			for(int y = 0; y < gg.getHeight(); y++) {
+				for(int x = 0; x < gg.getWidth(); x++) {
 					cellXY = gg.getCell(new Point(x,y));
 					path = getPath(cellXY);
 
 					// If the image is not already loaded, load it
 					if(!images.containsKey(path)) {
-						loadImage(path, 3, 1);
+						loadImage(path, 3, (cellXY instanceof Door) ? 2 : 1); //TODO: remove the instanceof
 					}
 
 					// Draw the image

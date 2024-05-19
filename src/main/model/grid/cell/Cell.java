@@ -75,6 +75,12 @@ public class Cell extends Observable {
 				else
 					res = new BoxButton(grid, Color.fromChar(str.charAt(1)));
 				break;
+			case 'd':
+				res = new Door(grid);
+				break;
+			case 'k':
+				res = new Key(grid);
+				break;
 			default:
 				throw new IllegalArgumentException("Invalid character for cell.");
 		}

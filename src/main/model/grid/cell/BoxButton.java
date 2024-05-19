@@ -79,29 +79,11 @@ public class BoxButton extends Cell {
 
 	/**
 	 * Returns true if the button is activated, false otherwise.
+	 * The button is activated if a box of the same color is on it.
 	 *
 	 * @return true if the button is activated, false otherwise
 	 */
 	public boolean isActivated() {
-		return activated;
-	}
-
-	/**
-	 * Enters an entity into the box button cell from a specified direction.
-	 * If the entity can enter the cell, it checks if it is a Box and if its color matches the button's color.
-	 * If the conditions are met, the button is activated.
-	 * 
-	 * @param e   the entity to enter the cell
-	 * @param dir the direction from which the entity is entering
-	 * @return true if the entity successfully enters the cell, false otherwise
-	 */
-	@Override
-	public boolean enter(Entity e, Direction dir) {
-		if (super.enter(e, dir)) {
-			activated = (e instanceof Box && ((Box) e).getColor() == color);
-			return true;
-		}
-		else
-			return false;			
+		return occupant instanceof Box && ((Box) occupant).getColor() == color;
 	}
 }

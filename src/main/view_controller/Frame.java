@@ -26,14 +26,12 @@ public class Frame extends JFrame implements Observer {
 	private static int animationCounter = 0;
 
 	public Frame(GridGame gg) {
-		// Charger les images
 		this.gg = gg;
 		this.player = gg.getPlayer();
 		cellPanel = new CellPanel(gg);
 		entityPanel = new EntityPanel(gg);
-		// Configurer la fenêtre principale
-		build(cellPanel, entityPanel);
 
+		build(cellPanel, entityPanel);
 		addKeyboardListener();
 		setVisible(true);
 	}
@@ -99,6 +97,7 @@ public class Frame extends JFrame implements Observer {
 	@Override
 	public void update(java.util.Observable o, Object arg) {
 		System.out.println("Update !");
+		gg.updateDoors();
 		if(gg.isWin()) {
 			System.out.println("Win");
 			dispose();

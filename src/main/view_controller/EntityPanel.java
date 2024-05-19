@@ -36,8 +36,8 @@ public class EntityPanel extends BasePanel {
 		try {
 			super.paintComponent(g);
 
-			for(int x = 0; x < gg.getWidth(); x++) {
-				for(int y = 0; y < gg.getHeight(); y++) {
+			for(int y = 0; y < gg.getHeight(); y++) {
+				for(int x = 0; x < gg.getWidth(); x++) {
 					entityXY = gg.getCell(new Point(x,y)).getOccupant();
 					if(entityXY != null) {
 						path = getPath(entityXY);
