@@ -7,7 +7,7 @@ import main.view_controller.*;
 public class App {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Hello, World!");
-        GridGame g = new GridGame("data/levels/level13.txt");
+        GridGame g = new GridGame("data/levels/level2.txt");
 		Frame f = new Frame(g, g.getWidth(), g.getHeight());
 		g.getPlayer().addObserver(f);
 		f.setVisible(true);

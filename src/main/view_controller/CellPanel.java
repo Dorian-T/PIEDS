@@ -57,15 +57,13 @@ public class CellPanel extends BasePanel {
 					path = getPath(cellXY);
 
 					// If the image is not already loaded, load it
-					if(!images.containsKey(path)) {
+					if(!images.containsKey(path))
 						loadImage(path, 3, cellXY.getNumberOfVersions());
-					}
 
 					// Draw the image
 					subImg = images.get(path);
-					if(subImg != null) {
+					if(subImg != null)
 						drawImg(g, subImg, x, y, Frame.getAnimationCounter(), cellXY.getVersion());
-					}
 				}
 			}
 		}

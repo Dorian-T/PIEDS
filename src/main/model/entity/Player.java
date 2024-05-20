@@ -21,11 +21,15 @@ public class Player extends Entity {
 	public Player(Cell cell) {
 		super(cell);
 		imagePath = "baba.png";
-		version = 3;
 	}
 
 
 	// === Getters ===
+
+	@Override
+	public int getNumberOfVersions() {
+		return 4;
+	}
 
 	@Override
 	public int getVersion() {

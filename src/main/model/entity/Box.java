@@ -44,21 +44,32 @@ public class Box extends Entity {
 	// === Getters ===
 
 	/**
+	 * Returns the number of versions for this box.
+	 *
+	 * @return the number of versions
+	 */
+	@Override
+	public int getNumberOfVersions() {
+		return 6;
+	}
+
+	/**
+	 * Returns the version of the box.
+	 * The version is the color of the box.
+	 *
+	 * @return the version of the box
+	 */
+	@Override
+	public int getVersion() {
+		return color.toInt();
+	}
+
+	/**
 	 * Returns the color of the box.
 	 *
 	 * @return the color of the box
 	 */
 	public Color getColor() {
 		return color;
-	}
-
-	/**
-	 * Returns the path of the image of the box.
-	 *
-	 * @return the path of the image of the box
-	 */
-	@Override
-	public String getImagePath() {
-		return color + "-" + imagePath;
 	}
 }

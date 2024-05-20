@@ -2,8 +2,6 @@ package main.model.grid.cell;
 
 import main.model.Color;
 import main.model.entity.Box;
-import main.model.entity.Entity;
-import main.model.grid.Direction;
 import main.model.grid.GridGame;
 
 
@@ -13,7 +11,7 @@ import main.model.grid.GridGame;
  * 
  * @see Cell
  */
-public class BoxButton extends Cell {
+public class Flag extends Cell {
 
 	// === Variables ===
 
@@ -36,7 +34,7 @@ public class BoxButton extends Cell {
 	 * @param grid
 	 * @param color
 	 */
-	public BoxButton(GridGame grid, Color color) {
+	public Flag(GridGame grid, Color color) {
 		super(grid);
 		this.color = color;
 		activated = false;
@@ -48,12 +46,33 @@ public class BoxButton extends Cell {
 	 *
 	 * @param grid
 	 */
-	public BoxButton(GridGame grid) {
+	public Flag(GridGame grid) {
 		this(grid, Color.RED);
 	}
 
 
 	// === Getters ===
+
+	/**
+	 * Returns the number of versions for this flag.
+	 *
+	 * @return the number of versions
+	 */
+	@Override
+	public int getNumberOfVersions() {
+		return 6;
+	}
+
+	/**
+	 * Returns the version of the flag.
+	 * The version is the color of the flag.
+	 *
+	 * @return the version of the flag
+	 */
+	@Override
+	public int getVersion() {
+		return color.toInt();
+	}
 
 	/**
 	 * Returns the color of the button.
@@ -62,16 +81,6 @@ public class BoxButton extends Cell {
 	 */
 	public Color getColor() {
 		return color;
-	}
-
-	/**
-	 * Returns the path of the image of the button.
-	 *
-	 * @return the path of the image of the button
-	 */
-	@Override
-	public String getImagePath() {
-		return color + "-" + imagePath;
 	}
 
 

@@ -43,15 +43,13 @@ public class EntityPanel extends BasePanel {
 						path = getPath(entityXY);
 
 						// If the image is not already loaded, load it
-						if(!images.containsKey(path)) {
-							loadImage(path, 3, (entityXY instanceof Player) ? 4 : 1); // TODO: remove the instanceof
-						}
+						if(!images.containsKey(path))
+							loadImage(path, 3, entityXY.getNumberOfVersions());
 
 						// Draw the image
 						subImg = images.get(path);
-						if(subImg != null) {
+						if(subImg != null)
 							drawImg(g, subImg, x, y, Frame.getAnimationCounter(), entityXY.getVersion());
-						}
 					}
 				}
 			}
@@ -62,7 +60,7 @@ public class EntityPanel extends BasePanel {
 	}
 
 	@Override
-	protected String getPath(Object param) { // static ?
+	protected String getPath(Object param) {
 		String path = ((Entity) param).getImagePath();
 		if(path  == null)
 			return null;

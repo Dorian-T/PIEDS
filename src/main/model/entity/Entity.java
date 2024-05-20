@@ -31,11 +31,6 @@ public abstract class Entity extends Observable {
 	 */
 	protected String imagePath;
 
-	/**
-	 * The id of the curent version of the image of the entity.
-	 */
-	protected int version;
-
 
 	// === Constructors ===
 
@@ -47,7 +42,6 @@ public abstract class Entity extends Observable {
 	protected Entity(Cell cell) {
 		this.cell = cell;
 		direction = Direction.LEFT;
-		version = 0;
 	}
 
 	/**
@@ -109,12 +103,21 @@ public abstract class Entity extends Observable {
 	}
 
 	/**
+	 * Returns the number of versions for this entity.
+	 *
+	 * @return the number of versions
+	 */
+	public int getNumberOfVersions() {
+		return 1;
+	}
+
+	/**
 	 * Returns the id of the current version of the image of the entity.
 	 *
 	 * @return the id of the current version of the image of the entity
 	 */
 	public int getVersion() {
-		return version;
+		return 0;
 	}
 
 

@@ -23,7 +23,7 @@ public class GridGame {
 	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
 	private int height;
 	private int width;
-	private List<BoxButton> boxButtons;
+	private List<Flag> boxButtons;
 	private List<Door> doors;
 	private List<Key> keys;
 	private String levelFilename;
@@ -99,8 +99,8 @@ public class GridGame {
 				Cell c = Cell.loadCell(this, values[x]);
 
 				// Add the cell to the corresponding list
-				if(c instanceof BoxButton)
-					boxButtons.add((BoxButton) c);
+				if(c instanceof Flag)
+					boxButtons.add((Flag) c);
 				if(c instanceof Door)
 					doors.add((Door) c);
 				if(c instanceof Key)
@@ -245,7 +245,7 @@ public class GridGame {
 	 * @return true if all box buttons are activated, false otherwise
 	 */
 	public boolean isWin() {
-		for(BoxButton bb : boxButtons)
+		for(Flag bb : boxButtons)
 			if(!bb.isActivated())
 				return false;
 		return true;

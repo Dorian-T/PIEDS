@@ -72,9 +72,9 @@ public class Cell extends Observable {
 				break;
 			case 'b':
 				if(str.length() == 1)
-					res = new BoxButton(grid);
+					res = new Flag(grid);
 				else
-					res = new BoxButton(grid, Color.fromChar(str.charAt(1)));
+					res = new Flag(grid, Color.fromChar(str.charAt(1)));
 				break;
 			case 'i':
 				res = new Ice(grid);
