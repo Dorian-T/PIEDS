@@ -58,7 +58,6 @@ public class Player extends Entity {
 	public boolean moveTo(Direction dir) {
 		Cell newCell = cell.getCell(cell, dir);
 		if (newCell.enter(this, dir)) {
-			cell = newCell;
 			setChanged();
 			notifyObservers();
 			return true;

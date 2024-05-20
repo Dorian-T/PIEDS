@@ -129,6 +129,15 @@ public abstract class Entity extends Observable {
 		this.direction = dir;
 	}
 
+	/**
+	 * Set the cell where the entity is.
+	 * 
+	 * @param cell
+	 */
+	public void setCell(Cell cell) {
+		this.cell = cell;
+	}
+
 
 	// === Methods ===
 
@@ -139,13 +148,8 @@ public abstract class Entity extends Observable {
 	 * @param dir
 	 * @return true if the entity can move, false otherwise
 	 */
-	public boolean moveTo(Direction dir) { // est-ce vraiment utile pour toutes les entités ?
+	public boolean moveTo(Direction dir) {
 		Cell newCell = cell.getCell(cell, dir);
-		if(newCell.enter(this, dir)) {
-			cell = newCell;
-			return true;
-		}
-		System.out.println("yo chuis pas un player");
-		return false;
+		return newCell.enter(this, dir);
 	}
 }

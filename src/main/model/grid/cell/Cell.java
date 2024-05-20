@@ -76,6 +76,9 @@ public class Cell extends Observable {
 				else
 					res = new BoxButton(grid, Color.fromChar(str.charAt(1)));
 				break;
+			case 'i':
+				res = new Ice(grid);
+				break;
 			case 'd':
 				res = new Door(grid);
 				break;
@@ -156,6 +159,7 @@ public class Cell extends Observable {
 			e.setDirection(dir);
 			e.getCell().setOccupant(null);
 			occupant = e;
+			e.setCell(this);
 			return true;
 		}
 		else if(e instanceof Box)
@@ -166,6 +170,7 @@ public class Cell extends Observable {
 				e.setDirection(dir);
 				e.getCell().setOccupant(null);
 				occupant = e;
+				e.setCell(this);
 				return true;
 			}
 			return false;
