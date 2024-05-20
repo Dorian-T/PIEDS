@@ -15,8 +15,8 @@ import main.model.grid.GridGame;
 
 
 public class Frame extends JFrame implements Observer {
-	private int width;
-	private int height;
+	private int xSize;
+	private int ySize;
 	public static final int IMAGE_SIZE = 24;
 	public static final int IMAGE_FACTOR = 3;
 	private CellPanel cellPanel;
@@ -27,8 +27,8 @@ public class Frame extends JFrame implements Observer {
 
 	public Frame(GridGame gg, int width, int height) {
 		this.gg = gg;
-		this.width = width;
-		this.height = height;
+		this.xSize = width;
+		this.ySize = height;
 		this.player = gg.getPlayer();
 		cellPanel = new CellPanel(gg);
 		entityPanel = new EntityPanel(gg);
@@ -39,18 +39,18 @@ public class Frame extends JFrame implements Observer {
 	}
 
 	public void build(CellPanel gp, EntityPanel ep) {
-		setTitle("Image Layers");
+		setTitle("PIEDS");
 
 		setLayout(new BorderLayout());
 
 		JLayeredPane layeredPane = new JLayeredPane();
 
-		int windoWidth = width * IMAGE_SIZE * IMAGE_FACTOR;
-		int windowHeight = height * IMAGE_SIZE * IMAGE_FACTOR;
-		gp.setBounds(0, 0, windoWidth, windowHeight);
-		ep.setBounds(0, 0, windoWidth, windowHeight);
+		int windowWidth = xSize * IMAGE_SIZE * IMAGE_FACTOR;
+		int windowHeight = ySize * IMAGE_SIZE * IMAGE_FACTOR;
+		gp.setBounds(0, 0, windowWidth, windowHeight);
+		ep.setBounds(0, 0, windowWidth, windowHeight);
 
-		layeredPane.setPreferredSize(new Dimension(windoWidth, windowHeight));
+		layeredPane.setPreferredSize(new Dimension(windowWidth, windowHeight));
 
 		layeredPane.add(gp, Integer.valueOf(0));
 		layeredPane.add(ep, Integer.valueOf(1));
@@ -69,12 +69,10 @@ public class Frame extends JFrame implements Observer {
 					case KeyEvent.VK_LEFT:
 					case KeyEvent.VK_Q:
 						player.moveTo(Direction.LEFT);
-						System.out.println("player mooves");
 						break;
 					case KeyEvent.VK_RIGHT:
 					case KeyEvent.VK_D:
 						player.moveTo(Direction.RIGHT);
-						System.out.println("player mooves");
 						break;
 					case KeyEvent.VK_UP:
 					case KeyEvent.VK_Z:
@@ -98,7 +96,6 @@ public class Frame extends JFrame implements Observer {
 
 	@Override
 	public void update(java.util.Observable o, Object arg) {
-		System.out.println("Update !");
 		gg.updateDoors();
 		if(gg.isWin()) {
 			System.out.println("Win");
