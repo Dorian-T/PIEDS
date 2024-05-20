@@ -3,6 +3,7 @@ package main.model.grid.cell;
 import java.util.Observable;
 
 import main.model.Color;
+import main.model.entity.Box;
 import main.model.entity.Entity;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
@@ -157,6 +158,8 @@ public class Cell extends Observable {
 			occupant = e;
 			return true;
 		}
+		else if(e instanceof Box)
+			return false;
 		else {
 			Cell newCell = grid.getCell(this, dir);
 			if(newCell.enter(occupant, dir)) {
@@ -169,8 +172,8 @@ public class Cell extends Observable {
 		}
 	}
 
-	public void begin() {
-		setChanged();
-		notifyObservers();
-	}
+	// public void begin() {
+	// 	setChanged();
+	// 	notifyObservers();
+	// }
 }
