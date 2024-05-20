@@ -1,7 +1,7 @@
 package main.model;
 
 public enum Color {
-	BLUE('1'), GREEN('2'), ORANGE('3'), PURPLE('4'), RED('5'), YELLOW('6');
+	BLUE('0'), GREEN('1'), ORANGE('2'), PURPLE('3'), RED('4'), YELLOW('5');
 
 	private char colorId;
 
@@ -23,5 +23,9 @@ public enum Color {
 	@Override
 	public String toString() {
 		return this.name().toLowerCase();
+	}
+
+	public int toInt() {
+		return Integer.parseInt(String.valueOf(colorId));
 	}
 }

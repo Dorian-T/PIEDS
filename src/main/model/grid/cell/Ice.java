@@ -34,24 +34,4 @@ public class Ice extends Cell {
 		}
 		return false;
 	}
-	// public boolean enter(Entity e, Direction dir) {
-	// 	if(occupant == null) {
-	// 		e.setDirection(dir);
-	// 		e.getCell().setOccupant(null);
-	// 		occupant = e;
-	// 		return true;
-	// 	}
-	// 	else if(e instanceof Box)
-	// 		return false;
-	// 	else {
-	// 		Cell newCell = grid.getCell(this, dir);
-	// 		if(newCell.enter(occupant, dir)) {
-	// 			e.setDirection(dir);
-	// 			e.getCell().setOccupant(null);
-	// 			occupant = e;
-	// 			return true;
-	// 		}
-	// 		return false;
-	// 	}
-	// }
 }

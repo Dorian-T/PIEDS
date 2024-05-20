@@ -39,6 +39,16 @@ public class Door extends Cell {
 	// === Getters ===
 
 	/**
+	 * Returns the number of versions for this door.
+	 *
+	 * @return the number of versions
+	 */
+	@Override
+	public int getNumberOfVersions() {
+		return 2;
+	}
+
+	/**
 	 * Returns the id of the curent version of the image of the door.
 	 *
 	 * @return 1 if the door is open, 0 otherwise

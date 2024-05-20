@@ -58,7 +58,7 @@ public class CellPanel extends BasePanel {
 
 					// If the image is not already loaded, load it
 					if(!images.containsKey(path)) {
-						loadImage(path, 3, (cellXY instanceof Door) ? 2 : 1); //TODO: remove the instanceof
+						loadImage(path, 3, cellXY.getNumberOfVersions());
 					}
 
 					// Draw the image

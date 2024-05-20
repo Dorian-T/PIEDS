@@ -85,6 +85,12 @@ public class Cell extends Observable {
 			case 'k':
 				res = new Key(grid);
 				break;
+			case 'p':
+				if(str.length() == 1)
+					res = new Portal(grid);
+				else
+					res = new Portal(grid, Color.fromChar(str.charAt(1)));
+				break;
 			default:
 				throw new IllegalArgumentException("Invalid character for cell.");
 		}
@@ -110,6 +116,15 @@ public class Cell extends Observable {
 	 */
 	public String getImagePath() {
 		return imagePath;
+	}
+
+	/**
+	 * Returns the number of versions for this cell.
+	 *
+	 * @return the number of versions
+	 */
+	public int getNumberOfVersions() {
+		return 1;
 	}
 
 	/**

@@ -6,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import main.model.Color;
 import main.model.entity.*;
 import main.model.grid.cell.*;
 
@@ -50,7 +52,7 @@ public class GridGame {
 				throw new IllegalArgumentException("Width and height must be positive.");
 
 			// Create the grid
-			createGrid(br);
+			createCells(br);
 
 			// Create the entities
 			createEntities(br);
@@ -76,7 +78,7 @@ public class GridGame {
 	 * @param height the height of the grid
 	 * @throws IOException if an I/O error occurs while reading the grid data
 	 */
-	private void createGrid(BufferedReader br) throws IOException {
+	private void createCells(BufferedReader br) throws IOException {
 		String line;
 		String[] values;
 
@@ -85,6 +87,10 @@ public class GridGame {
 		boxButtons = new ArrayList<>();
 		doors = new ArrayList<>();
 		keys = new ArrayList<>();
+
+		// Temporary variables for creating the portals
+		Map<Color, List<Portal>> portals = new EnumMap<>(Color.class);
+		Color color;
 
 		for(int y = 0; y < height; y++) {
 			line = br.readLine();
@@ -99,10 +105,26 @@ public class GridGame {
 					doors.add((Door) c);
 				if(c instanceof Key)
 					keys.add((Key) c);
+				if(c instanceof Portal) {
+					color = ((Portal) c).getColor();
+					if(portals.get(color) == null)
+						portals.put(color, new ArrayList<>());
+					portals.get(color).add((Portal) c);
+				}
 
 				tab[y][x] = c;
 				allPoint.put(tab[y][x], new Point(x, y));
 			}
+		}
+
+		// Set the other portal for each portal
+		for(List<Portal> list : portals.values()) {
+			if(list.size() == 2) {
+				list.get(0).setOtherPortal(list.get(1));
+				list.get(1).setOtherPortal(list.get(0));
+			}
+			else
+				throw new IllegalArgumentException("Portals must be in pairs.");
 		}
 	}
 

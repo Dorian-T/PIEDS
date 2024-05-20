@@ -62,7 +62,7 @@ public class EntityPanel extends BasePanel {
 	}
 
 	@Override
-	protected String getPath(Object param) {
+	protected String getPath(Object param) { // static ?
 		String path = ((Entity) param).getImagePath();
 		if(path  == null)
 			return null;
