@@ -1,17 +1,25 @@
 package main.view_controller;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import main.model.entity.Player;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
 
 
 public class Frame extends JFrame implements Observer {
@@ -99,7 +107,7 @@ public class Frame extends JFrame implements Observer {
 		gg.updateDoors();
 		if(gg.isWin()) {
 			System.out.println("Win");
-			dispose();
+			showEndScreen();
 		}
 		animationCounter = (animationCounter + 1) % 3;
 		repaint();
@@ -112,5 +120,72 @@ public class Frame extends JFrame implements Observer {
 	 */
 	public static int getAnimationCounter() {
 		return animationCounter;
+	}
+
+	/**
+	 * Displays the end screen of the game.
+	 * This method repaints the frame, loads an image, waits for the image to be loaded,
+	 * creates a buffered image, and draws the image on the graphics object.
+	 * It then sleeps for certain durations and finally disposes the frame.
+	 */
+	private void showEndScreen() {
+		repaint();
+
+		// Load the image
+		Image win = new ImageIcon("data/assets/win.png").getImage();
+		win = win.getScaledInstance(Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR * 3, Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR, Image.SCALE_DEFAULT);
+		
+		// Wait for the image to be loaded
+		MediaTracker tracker = new MediaTracker(new Component() {});
+		tracker.addImage(win, 0);
+		try {
+			tracker.waitForID(0);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		// Create a buffered image
+		BufferedImage bufferedWin = new BufferedImage(win.getWidth(null), win.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Graphics temp = bufferedWin.createGraphics();
+		temp.drawImage(win, 0, 0, null);
+		temp.dispose();
+
+		Graphics g = getGraphics();
+
+		try {
+			drawWin(g, bufferedWin, 1, 1, 1);
+			Thread.sleep(500);
+			drawWin(g, bufferedWin, 0, 1, 3);
+			Thread.sleep(500);
+			drawWin(g, bufferedWin, 0, 2, 3);
+			Thread.sleep(1000);
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		dispose();
+	}
+
+	/**
+	 * Draws a portion of an image on the graphics context.
+	 *
+	 * @param g The graphics context to draw on.
+	 * @param img The image to draw.
+	 * @param startLetter The index of the starting letter.
+	 * @param endLetter The index of the ending letter.
+	 * @param n The number of letters.
+	 */
+	private void drawWin(Graphics g, BufferedImage img, int startLetter, int endLetter, int n) {
+		img = img.getSubimage(
+			startLetter * Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR,
+			0,
+			(endLetter - startLetter + 1) * Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR,
+			Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR
+		);
+
+		int x = (getWidth() - n * IMAGE_SIZE * IMAGE_FACTOR) / 2;
+		int y = (getHeight() - IMAGE_SIZE * IMAGE_FACTOR) / 2;
+		g.drawImage(img, x, y, this);
 	}
 }
