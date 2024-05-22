@@ -94,6 +94,7 @@ public class Frame extends JFrame implements Observer {
 
 		build(cellPanel, entityPanel);
 		addKeyboardListener();
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 

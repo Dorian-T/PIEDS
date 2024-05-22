@@ -40,13 +40,14 @@ public class Menu extends JFrame {
 			setTitle("PIEDS");
 			setLayout(new BorderLayout());
 			getContentPane().setBackground(new Color(19, 23, 30));
-
+			
 			addTitle();
 			addLevelsButtons();
 			addControls();
-
+			
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			pack();
+			setLocationRelativeTo(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
