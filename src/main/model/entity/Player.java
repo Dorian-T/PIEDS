@@ -72,11 +72,13 @@ public class Player extends Entity {
 	 */
 	@Override
 	public boolean moveTo(Direction dir) {
-		Cell newCell = cell.getCell(cell, dir);
-		if (newCell.enter(this, dir)) {
-			setChanged();
-			notifyObservers();
-			return true;
+		if(cell.canExit(true, dir)) {
+			Cell newCell = cell.getCell(cell, dir);
+			if (newCell.enter(this, dir)) {
+				setChanged();
+				notifyObservers();
+				return true;
+			}
 		}
 		return false;
 	}
