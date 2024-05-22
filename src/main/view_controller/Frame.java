@@ -89,10 +89,13 @@ public class Frame extends JFrame implements Observer {
 					case KeyEvent.VK_S:
 						player.moveTo(Direction.DOWN);
 						break;
-					// case KeyEvent.VK_R: // TODO: debug
-					// 	gg.reset();
-					// 	player = gg.getPlayer();
-					// 	break;
+					case KeyEvent.VK_R: // TODO: debug
+						GridGame g = new GridGame(gg.getLevelFilename());
+						Frame f = new Frame(g, g.getWidth(), g.getHeight());
+						g.getPlayer().addObserver(f);
+						f.setVisible(true);
+						dispose();
+					 	break;
 					default:
 						break;
 				}

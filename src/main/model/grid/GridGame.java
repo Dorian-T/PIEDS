@@ -163,6 +163,10 @@ public class GridGame {
 
 	// === Getters ===
 
+	public String getLevelFilename() {
+		return levelFilename;
+	}
+
 	/**
 	 * Returns the height of the grid.
 	 *
