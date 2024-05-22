@@ -5,7 +5,11 @@ import main.view_controller.Menu;
 
 public class App {
 	public static void main(String[] args) {
-		Menu m = new Menu();
-		m.setVisible(true);
+		openMenu();
+	}
+
+	public static void openMenu() {
+		Menu menu = new Menu();
+		menu.setVisible(true);
 	}
 }

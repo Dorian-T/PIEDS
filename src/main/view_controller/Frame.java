@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
+import main.App;
 import main.model.entity.Player;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
@@ -162,6 +163,7 @@ public class Frame extends JFrame implements Observer {
 			e.printStackTrace();
 		}
 
+		App.openMenu();
 		dispose();
 	}
 
