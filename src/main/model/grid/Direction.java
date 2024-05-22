@@ -8,7 +8,25 @@ public enum Direction {
 
 	// === Constants ===
 
-	UP, DOWN, LEFT, RIGHT;
+	/**
+	 * The direction up
+	 */
+	UP,
+
+	/**
+	 * The direction right
+	 */
+	RIGHT,
+
+	/**
+	 * The direction down
+	 */
+	DOWN,
+
+	/**
+	 * The direction left
+	 */
+	LEFT;
 
 
 	// === Methods ===

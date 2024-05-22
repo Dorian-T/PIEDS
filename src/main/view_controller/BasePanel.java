@@ -52,6 +52,8 @@ public abstract class BasePanel extends JPanel {
 	 * The loaded image is scaled to a specific size and converted to a buffered image.
 	 * 
 	 * @param path the path of the image file to be loaded
+	 * @param sizeX the width of the image
+	 * @param sizeY the height of the image
 	 * @throws InterruptedException if the image loading process is interrupted
 	 */
 	protected void loadImage(String path, int sizeX, int sizeY) throws InterruptedException {
@@ -95,6 +97,8 @@ public abstract class BasePanel extends JPanel {
 	 * @param img the image to be drawn
 	 * @param x the x coordinate of the image
 	 * @param y the y coordinate of the image
+	 * @param offsetX the x offset of the image
+	 * @param offsetY the y offset of the image
 	 */
 	protected void drawImg(Graphics g, BufferedImage img, int x, int y, int offsetX, int offsetY) {
 		img = img.getSubimage(

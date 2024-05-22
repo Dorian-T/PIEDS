@@ -16,13 +16,21 @@ public class Rail extends Cell {
 
 	// === Constructors ===
 
+	/**
+	 * Represents the directions in which a rail cell has openings.
+	 */
 	private Direction[] openings;
+
+	/**
+	 * The type of the rail.
+	 */
 	private int type;
 
 	/**
 	 * Constructor of the class Wall
 	 *
-	 * @param grid
+	 * @param grid the grid where the wall is
+	 * @param type the type of the rail
 	 */
 	public Rail(GridGame grid, int type) {
 		super(grid);
@@ -47,7 +55,6 @@ public class Rail extends Cell {
 		case 5:
 			openings = new Direction[] { Direction.DOWN, Direction.LEFT };
 			break;
-
 		case 6:
 			openings = new Direction[] { Direction.RIGHT, Direction.DOWN, Direction.LEFT };
 			break;
@@ -65,6 +72,14 @@ public class Rail extends Cell {
 		}
 	}
 
+	/**
+	 * Allows an entity to enter the rail cell from a specific direction.
+	 * Checks if the entity enter by the right direction
+	 *
+	 * @param e The entity trying to enter the rail cell.
+	 * @param dir The direction from which the entity is trying to enter.
+	 * @return True if the entity successfully enters the rail cell, false otherwise.
+	 */
 	@Override
 	public boolean enter(Entity e, Direction dir) {
 		if (occupant != null) {
@@ -119,10 +134,16 @@ public class Rail extends Cell {
 		return isOpened;
 	}
 
+	/**
+	 * Checks if a player or an object can exit the rail in the specified direction.
+	 *
+	 * @param isPlayer true if the entity is a player, false if it's an object
+	 * @param dir the direction in which the entity wants to exit
+	 * @return true if the entity can exit, false otherwise
+	 */
 	@Override
 	public boolean canExit(boolean isPlayer, Direction dir) {
-		boolean isOpened = isPlayer; // if it's the player he can go through, otherwise it's false so it needs to be
-										// checked
+		boolean isOpened = isPlayer; // if it's the player he can go through, otherwise it's false so it needs to be checked
 		for (int i = 0; i < openings.length; i++) {
 			if (openings[i].equals(dir)) {
 				isOpened = true;
@@ -131,6 +152,12 @@ public class Rail extends Cell {
 		return isOpened;
 	}
 
+	/**
+	 * Checks if the train can exit the rail in the specified direction.
+	 *
+	 * @param dir the direction in which the train wants to exit
+	 * @return true if the train can exit in the specified direction, false otherwise
+	 */
 	@Override
 	public boolean canExit(Direction dir) {
 		return canExit(false, dir);

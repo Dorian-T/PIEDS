@@ -18,7 +18,7 @@ public class FragileFloor extends Cell {
 	/**
 	 * Constructor of the class FragileFloor
 	 *
-	 * @param grid
+	 * @param grid the grid where the fragile floor cell is
 	 */
 	public FragileFloor(GridGame grid) {
 		super(grid);

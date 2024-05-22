@@ -25,7 +25,7 @@ public class Key extends Cell {
 	/**
 	 * Constructor of the class Key
 	 *
-	 * @param cell the cell where the key is
+	 * @param gg the grid where the key is
 	 */
 	public Key(GridGame gg) {
 		super(gg);

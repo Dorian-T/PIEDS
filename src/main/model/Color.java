@@ -7,7 +7,35 @@ public enum Color {
 
 	// === Constants ===
 
-	BLUE('0'), GREEN('1'), ORANGE('2'), PURPLE('3'), RED('4'), YELLOW('5');
+	/**
+	 * The blue color.
+	 */
+	BLUE('0'),
+
+	/**
+	 * The green color.
+	 */
+	GREEN('1'),
+
+	/**
+	 * The orange color.
+	 */
+	ORANGE('2'),
+
+	/**
+	 * The purple color.
+	 */
+	PURPLE('3'),
+
+	/**
+	 * The red color.
+	 */
+	RED('4'),
+
+	/**
+	 * The yellow color.
+	 */
+	YELLOW('5');
 
 
 	// === Variables ===
@@ -32,8 +60,8 @@ public enum Color {
 	/**
 	 * Returns the color corresponding to the given identifier.
 	 *
-	 * @param id
-	 * @return
+	 * @param id The identifier of the color.
+	 * @return The color corresponding to the given identifier.
 	 */
 	public static Color fromChar(char id) {
 		for (Color color : Color.values())

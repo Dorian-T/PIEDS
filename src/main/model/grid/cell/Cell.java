@@ -45,7 +45,7 @@ public class Cell extends Observable {
 	/**
 	 * Constructor of the class Cell
 	 *
-	 * @param grid
+	 * @param grid the grid where the cell is
 	 */
 	public Cell(GridGame grid) {
 		this.grid = grid;
@@ -203,13 +203,25 @@ public class Cell extends Observable {
 			return false;
 		}
 	}
+
+	/**
+	 * Returns true if the entity can exit the cell in the specified direction, false otherwise.
+	 *
+	 * @param isPlayer true if the entity is a player, false if it's an object
+	 * @param dir the direction in which the entity wants to exit
+	 * @return true if the entity can exit, false otherwise
+	 */
 	public boolean canExit(boolean isPlayer, Direction dir) {
 		return true;
 	}
-	
+
+	/**
+	 * Returns true if the entity can exit the cell in the specified direction, false otherwise.
+	 *
+	 * @param dir the direction in which the entity wants to exit
+	 * @return true if the entity can exit, false otherwise
+	 */
 	public boolean canExit(Direction dir) {
 		return canExit(false, dir);
 	}
-
-	
 }

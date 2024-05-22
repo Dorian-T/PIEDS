@@ -38,7 +38,7 @@ public abstract class Entity extends Observable {
 	/**
 	 * Constructor of the class Entity
 	 *
-	 * @param cell
+	 * @param cell the cell where the entity is
 	 */
 	protected Entity(Cell cell) {
 		this.cell = cell;
@@ -127,7 +127,7 @@ public abstract class Entity extends Observable {
 	/**
 	 * Set the direction of the entity.
 	 *
-	 * @param dir
+	 * @param dir the new direction of the entity
 	 */
 	public void setDirection(Direction dir) {
 		this.direction = dir;
@@ -136,7 +136,7 @@ public abstract class Entity extends Observable {
 	/**
 	 * Set the cell where the entity is.
 	 * 
-	 * @param cell
+	 * @param cell the new cell where the entity is
 	 */
 	public void setCell(Cell cell) {
 		this.cell = cell;
@@ -149,7 +149,7 @@ public abstract class Entity extends Observable {
 	 * Move the entity in the grid.
 	 * The entity ask the cell to move it.
 	 *
-	 * @param dir
+	 * @param dir the direction where the entity wants to move
 	 * @return true if the entity can move, false otherwise
 	 */
 	public boolean moveTo(Direction dir) {

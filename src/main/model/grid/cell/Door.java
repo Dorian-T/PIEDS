@@ -26,7 +26,7 @@ public class Door extends Cell {
 	/**
 	 * Constructor of the class Door
 	 *
-	 * @param grid
+	 * @param grid the grid where the door is
 	 */
 	public Door(GridGame grid) {
 		super(grid);

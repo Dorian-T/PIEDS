@@ -18,6 +18,8 @@ public class EntityPanel extends BasePanel {
 	/**
 	 * Represents a panel that displays an entity in a grid game.
 	 * Extends the base panel class and initializes it with the given grid game.
+	 * 
+	 * @param gg the grid game containing the entities to be displayed
 	 */
 	public EntityPanel(GridGame gg) {
 		super(gg);

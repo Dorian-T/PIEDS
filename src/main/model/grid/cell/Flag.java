@@ -31,8 +31,8 @@ public class Flag extends Cell {
 	/**
 	 * Constructor of the class BoxButton
 	 *
-	 * @param grid
-	 * @param color
+	 * @param grid the grid where the button is
+	 * @param color the color of the button
 	 */
 	public Flag(GridGame grid, Color color) {
 		super(grid);
@@ -44,7 +44,7 @@ public class Flag extends Cell {
 	/**
 	 * Constructor of the class BoxButton
 	 *
-	 * @param grid
+	 * @param grid the grid where the button is
 	 */
 	public Flag(GridGame grid) {
 		this(grid, Color.RED);

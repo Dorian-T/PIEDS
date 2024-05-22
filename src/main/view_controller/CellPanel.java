@@ -76,7 +76,7 @@ public class CellPanel extends BasePanel {
 	 * If the cell is a BoxButton, the path is constructed using the color of the button.
 	 * If the cell does not have an image path, null is returned.
 	 * 
-	 * @param cell the cell containing the image path
+	 * @param param the cell to be drawn
 	 * @return the path of the image file to be loaded or null if the cell does not have an image path
 	 */
 	@Override

@@ -19,7 +19,7 @@ public class Fire extends Cell {
 	/**
 	 * Constructor of the class Fire
 	 *
-	 * @param grid
+	 * @param grid the grid where the fire cell is
 	 */
 	public Fire(GridGame grid) {
 		super(grid);

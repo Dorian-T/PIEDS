@@ -18,7 +18,7 @@ public class Ice extends Cell {
 	/**
 	 * Constructor of the class Ice
 	 *
-	 * @param grid
+	 * @param grid the grid where the ice cell is
 	 */
 	public Ice(GridGame grid) {
 		super(grid);

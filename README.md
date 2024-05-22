@@ -13,3 +13,10 @@ Sacha Terrasson & Dorian Tonnis
 
 Le concept du jeu et les niveaux proviennent de [sokobanonline.com](https://www.sokobanonline.com/play/tutorials).
 Les assets sont tirés du jeu Baba Is You.
+
+## Javadoc
+
+Pour créer la javadoc, lancer la commande :
+```bash
+javadoc -encoding UTF-8 -d ../doc -subpackages main
+```

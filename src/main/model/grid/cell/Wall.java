@@ -18,7 +18,7 @@ public class Wall extends Cell {
 	/**
 	 * Constructor of the class Wall
 	 *
-	 * @param grid
+	 * @param grid the grid where the wall is
 	 */
 	public Wall(GridGame grid) {
 		super(grid);

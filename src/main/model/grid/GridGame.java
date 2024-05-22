@@ -21,6 +21,10 @@ import main.model.grid.cell.Key;
 import main.model.grid.cell.Portal;
 
 
+/**
+ * Represents a grid game.
+ * A grid game is a game that is played on a grid of cells.
+ */
 public class GridGame {
 
 	// === Variables ===
@@ -314,6 +318,7 @@ public class GridGame {
 	 *
 	 * @param cell The cell to be replaced.
 	 * @param newCell The new cell to be set.
+	 * @param e The entity to be set in the new cell.
 	 */
 	public void setCell(Cell cell, Cell newCell, Entity e) {
 		Point cellCoordinates = allPoint.get(cell);
