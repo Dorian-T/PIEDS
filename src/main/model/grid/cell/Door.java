@@ -70,6 +70,11 @@ public class Door extends Cell {
 
 	// === Setters ===
 
+	/**
+	 * Sets the open state of the door.
+	 *
+	 * @param bool the boolean value indicating whether the door should be open or not
+	 */
 	public void setOpen(boolean bool) {
 		open = bool;
 	}
@@ -77,6 +82,13 @@ public class Door extends Cell {
 
 	// === Methods ===
 
+	/**
+	 * Allows an entity to enter the door from a specific direction.
+	 * 
+	 * @param entity the entity trying to enter the door
+	 * @param direction the direction from which the entity is trying to enter
+	 * @return true if the door is open and the entity is allowed to enter, false otherwise
+	 */
 	@Override
 	public boolean enter(Entity entity, Direction direction) {
 		if(open)

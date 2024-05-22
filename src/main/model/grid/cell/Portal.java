@@ -7,7 +7,10 @@ import main.model.grid.GridGame;
 
 
 /**
+ * Represents a cell of the grid that is a portal.
  * A portal is a cell that can be used to teleport the player to another portal of the same color.
+ * 
+ * @see Cell
  */
 public class Portal extends Cell {
 	
@@ -38,6 +41,11 @@ public class Portal extends Cell {
 		imagePath = "portal.png";
 	}
 
+	/**
+	 * Creates a new Portal object with the specified GridGame and default color.
+	 *
+	 * @param gg the GridGame object associated with the Portal
+	 */
 	public Portal(GridGame gg) {
 		this(gg, Color.RED);
 	}

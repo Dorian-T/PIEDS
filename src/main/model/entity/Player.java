@@ -3,6 +3,7 @@ package main.model.entity;
 import main.model.grid.cell.Cell;
 import main.model.grid.Direction;
 
+
 /**
  * Represents the player in the game. The player is the entity that can be
  * controlled by the user.
@@ -26,11 +27,22 @@ public class Player extends Entity {
 
 	// === Getters ===
 
+	/**
+	 * Returns the number of versions of the player.
+	 *
+	 * @return the number of versions
+	 */
 	@Override
 	public int getNumberOfVersions() {
 		return 4;
 	}
 
+	/**
+	 * Returns the version of the player based on the current direction.
+	 * The version represents the orientation of the player.
+	 * 
+	 * @return the version of the player (0 for UP, 1 for RIGHT, 2 for DOWN, 3 for LEFT)
+	 */
 	@Override
 	public int getVersion() {
 		switch(direction) {

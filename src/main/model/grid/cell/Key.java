@@ -1,21 +1,25 @@
 package main.model.grid.cell;
 
-import java.util.Observable;
-
-import main.model.entity.Entity;
-import main.model.grid.Direction;
 import main.model.grid.GridGame;
 
 
+/**
+ * Represents a cell of the grid that is a key.
+ * A key is activated when an entity is in the cell.
+ * If all keys are activated, the doors are opened.
+ * 
+ * @see Cell
+ */
 public class Key extends Cell {
-	
+
 	// === Variables ===
 
 	/**
 	 * True if the key has been picked up, false otherwise
 	 */
 	private boolean pickedUp;
-	
+
+
 	// === Constructors ===
 
 	/**

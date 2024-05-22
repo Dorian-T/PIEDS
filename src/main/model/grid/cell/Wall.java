@@ -13,10 +13,6 @@ import main.model.entity.Entity;
  */
 public class Wall extends Cell {
 
-	// === Variables ===
-
-
-
 	// === Constructors ===
 
 	/**
@@ -27,7 +23,6 @@ public class Wall extends Cell {
 	public Wall(GridGame grid) {
 		super(grid);
 		imagePath = "wall.png";
-		// TODO Auto-generated constructor stub
 	}
 
 

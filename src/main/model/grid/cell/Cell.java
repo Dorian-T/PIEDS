@@ -32,7 +32,7 @@ public class Cell extends Observable {
 	/**
 	 * The path of the image of an empty cell.
 	 */
-	public String imagePath;
+	protected String imagePath;
 
 	/**
 	 * The id of the curent version of the image of the cell.
@@ -197,9 +197,4 @@ public class Cell extends Observable {
 			return false;
 		}
 	}
-
-	// public void begin() {
-	// 	setChanged();
-	// 	notifyObservers();
-	// }
 }

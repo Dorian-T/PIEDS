@@ -12,15 +12,33 @@ import java.util.List;
 import java.util.Map;
 
 import main.model.Color;
-import main.model.entity.*;
-import main.model.grid.cell.*;
+import main.model.entity.Entity;
+import main.model.entity.Player;
+import main.model.grid.cell.Cell;
+import main.model.grid.cell.Door;
+import main.model.grid.cell.Flag;
+import main.model.grid.cell.Key;
+import main.model.grid.cell.Portal;
 
 
 public class GridGame {
 
-	private Player p;
+	// === Variables ===
+
+	/**
+	 * Represents the grid of cells for the game.
+	 */
 	private Cell[][] tab;
-	private Map<Cell, Point> allPoint; // Same thing as tab, so it needs to be updated at the same time
+
+	/**
+	 * Represents the mapping of each cell to its corresponding Point.
+	 */
+	private Map<Cell, Point> allPoint;
+
+	/**
+	 * Represents the player in the game.
+	 */
+	private Player p;
 	private int height;
 	private int width;
 	private List<Flag> boxButtons;

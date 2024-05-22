@@ -6,6 +6,7 @@ import main.model.Color;
 import main.model.grid.Direction;
 import main.model.grid.cell.Cell;
 
+
 /**
  * Represents an entity in the game.
  * An entity is an object that can move in the grid.
