@@ -27,9 +27,11 @@ public class GridGame {
 	private List<Door> doors;
 	private List<Key> keys;
 	private String levelFilename;
+	private boolean loose;
 
 	public GridGame(String filename) {
 		levelFilename = filename;
+		loose = false;
 		try {
 			initialize(filename);
 		} catch (FileNotFoundException | IllegalArgumentException e) {
@@ -195,6 +197,15 @@ public class GridGame {
 	}
 
 	/**
+	 * Checks if the game is in a "loose" state.
+	 * 
+	 * @return true if the game is in a "loose" state, false otherwise.
+	 */
+	public boolean isLoose() {
+		return loose;
+	}
+
+	/**
 	 * Returns the cell at the specified point.
 	 *
 	 * @param p the point representing the coordinates of the cell
@@ -229,6 +240,34 @@ public class GridGame {
 
 
 	// === Methods ===
+
+	/**
+	 * Set the loose attribute to true.
+	 */
+	public void gameOver() {
+		loose = true;
+	}
+
+	/**
+	 * Replace a cell by a new cell in the grid.
+	 * tab and allPoint are updated at the same time.
+	 *
+	 * @param cell The cell to be replaced.
+	 * @param newCell The new cell to be set.
+	 */
+	public void setCell(Cell cell, Cell newCell, Entity e) {
+		Point cellCoordinates = allPoint.get(cell);
+		tab[cellCoordinates.y][cellCoordinates.x] = newCell;
+		allPoint.remove(cell);
+		allPoint.put(newCell, cellCoordinates);
+		newCell.setOccupant(e);
+		e.setCell(newCell);
+	}
+
+	public void removeEntity(Entity e) {
+		Point p = getPosition(e);
+		tab[p.y][p.x].setOccupant(null);
+	}
 
 	/**
 	 * Get the position of the entity in the grid.

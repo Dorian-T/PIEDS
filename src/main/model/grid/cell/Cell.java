@@ -91,6 +91,12 @@ public class Cell extends Observable {
 				else
 					res = new Portal(grid, Color.fromChar(str.charAt(1)));
 				break;
+			case 'f':
+				res = new FragileFloor(grid);
+				break;
+			case 'h': // 'h' for hole in the original sokoban
+				res = new Fire(grid);
+				break;
 			default:
 				throw new IllegalArgumentException("Invalid character for cell.");
 		}

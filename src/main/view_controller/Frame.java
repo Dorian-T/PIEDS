@@ -107,7 +107,12 @@ public class Frame extends JFrame implements Observer {
 	@Override
 	public void update(java.util.Observable o, Object arg) {
 		gg.updateDoors();
-		if(gg.isWin()) {
+		if(gg.isLoose()) {
+			System.out.println("Loose");
+			App.openMenu();
+			dispose();
+		}
+		else if(gg.isWin()) {
 			System.out.println("Win");
 			showEndScreen();
 		}
