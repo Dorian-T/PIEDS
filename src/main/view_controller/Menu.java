@@ -3,7 +3,6 @@ package main.view_controller;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,7 +48,6 @@ public class Menu extends JFrame {
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			pack();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -84,7 +82,10 @@ public class Menu extends JFrame {
 		panel.setBorder(new EmptyBorder(0, 60, 20, 0));
 		add(panel, BorderLayout.WEST);
 
-		for (String level : getLevels()) {
+		List<String> levels = getLevels();
+		cleanText(levels);
+
+		for (String level : levels) {
 			JButton button = new JButton(level);
 
 			// Style
@@ -149,7 +150,7 @@ public class Menu extends JFrame {
 	 * @return the list of levels
 	 */
 	private List<String> getLevels() {
-		List<String> levels = new ArrayList<String>();
+		List<String> levels = new ArrayList<>();
 		try (Stream<Path> paths = Files.walk(Paths.get("data/levels"))) {
             levels = paths
                 .filter(Files::isRegularFile)
@@ -160,5 +161,12 @@ public class Menu extends JFrame {
             e.printStackTrace();
         }
         return levels;
+	}
+
+	private static void cleanText(List<String> levels) {
+		for (int i = 0; i < levels.size(); i++) {
+			levels.set(i, levels.get(i).replace("_", " "));
+			levels.set(i, levels.get(i).replace(".txt", ""));
+		}
 	}
 }
