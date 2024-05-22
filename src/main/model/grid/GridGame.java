@@ -26,6 +26,21 @@ public class GridGame {
 	// === Variables ===
 
 	/**
+	 * Represents the filename of the level to load.
+	 */
+	private String levelFilename;
+
+	/**
+	 * Represents the height of the grid.
+	 */
+	private int height;
+
+	/**
+	 * Represents the width of the grid.
+	 */
+	private int width;
+
+	/**
 	 * Represents the grid of cells for the game.
 	 */
 	private Cell[][] tab;
@@ -39,14 +54,36 @@ public class GridGame {
 	 * Represents the player in the game.
 	 */
 	private Player p;
-	private int height;
-	private int width;
-	private List<Flag> boxButtons;
-	private List<Door> doors;
+
+	/**
+	 * Represents the list of all keys in the game.
+	 */
 	private List<Key> keys;
-	private String levelFilename;
+
+	/**
+	 * Represents the list of all flags in the game.
+	 */
+	private List<Flag> flags;
+
+	/**
+	 * Represents the list of all doors in the game.
+	 */
+	private List<Door> doors;
+
+	/**
+	 * Represents the state of the game.
+	 * If the player is in a "loose" state, the game is over.
+	 */
 	private boolean loose;
 
+
+	// === Constructors ===
+
+	/**
+	 * Creates a new GridGame object with the specified filename.
+	 *
+	 * @param filename the filename of the level to load
+	 */
 	public GridGame(String filename) {
 		levelFilename = filename;
 		loose = false;
@@ -108,7 +145,7 @@ public class GridGame {
 
 		tab = new Cell[height][width];
 		allPoint = new HashMap<>();
-		boxButtons = new ArrayList<>();
+		flags = new ArrayList<>();
 		doors = new ArrayList<>();
 		keys = new ArrayList<>();
 
@@ -124,7 +161,7 @@ public class GridGame {
 
 				// Add the cell to the corresponding list
 				if(c instanceof Flag)
-					boxButtons.add((Flag) c);
+					flags.add((Flag) c);
 				if(c instanceof Door)
 					doors.add((Door) c);
 				if(c instanceof Key)
@@ -183,6 +220,11 @@ public class GridGame {
 
 	// === Getters ===
 
+	/**
+	 * Returns the filename of the level.
+	 *
+	 * @return the filename of the level
+	 */
 	public String getLevelFilename() {
 		return levelFilename;
 	}
@@ -230,7 +272,7 @@ public class GridGame {
 	 * @return the cell at the specified point
 	 */
 	public Cell getCell(Point p) {
-		return tab[p.y][p.x];
+		return tab[p.getY()][p.getX()];
 	}
 
 	/**
@@ -244,13 +286,13 @@ public class GridGame {
 		Point cellCoordinates = allPoint.get(cell);
 		switch(dir) {
 			case UP:
-				return tab[cellCoordinates.y - 1][cellCoordinates.x];
+				return tab[cellCoordinates.getY() - 1][cellCoordinates.getX()];
 			case DOWN:
-				return tab[cellCoordinates.y + 1][cellCoordinates.x];
+				return tab[cellCoordinates.getY() + 1][cellCoordinates.getX()];
 			case LEFT:
-				return tab[cellCoordinates.y][cellCoordinates.x - 1];
+				return tab[cellCoordinates.getY()][cellCoordinates.getX() - 1];
 			case RIGHT:
-				return tab[cellCoordinates.y][cellCoordinates.x + 1];
+				return tab[cellCoordinates.getY()][cellCoordinates.getX() + 1];
 			default:
 				return null;
 		}
@@ -275,16 +317,21 @@ public class GridGame {
 	 */
 	public void setCell(Cell cell, Cell newCell, Entity e) {
 		Point cellCoordinates = allPoint.get(cell);
-		tab[cellCoordinates.y][cellCoordinates.x] = newCell;
+		tab[cellCoordinates.getY()][cellCoordinates.getX()] = newCell;
 		allPoint.remove(cell);
 		allPoint.put(newCell, cellCoordinates);
 		newCell.setOccupant(e);
 		e.setCell(newCell);
 	}
 
+	/**
+	 * Removes the specified entity from the grid.
+	 *
+	 * @param e the entity to be removed
+	 */
 	public void removeEntity(Entity e) {
-		Point p = getPosition(e);
-		tab[p.y][p.x].setOccupant(null);
+		Point coordinates = getPosition(e);
+		tab[coordinates.getY()][coordinates.getX()].setOccupant(null);
 	}
 
 	/**
@@ -310,12 +357,16 @@ public class GridGame {
 	 * @return true if all box buttons are activated, false otherwise
 	 */
 	public boolean isWin() {
-		for(Flag bb : boxButtons)
+		for(Flag bb : flags)
 			if(!bb.isActivated())
 				return false;
 		return true;
 	}
 
+	/**
+	 * Updates the state of the doors based on the collected keys.
+	 * If all keys have been picked up, all doors will be set to open.
+	 */
 	public void updateDoors() {
 		boolean allKeys = true;
 		for(Key k : keys)
@@ -323,17 +374,5 @@ public class GridGame {
 				allKeys = false;
 		for(Door d : doors)
 			d.setOpen(allKeys);
-	}
-
-	public void reset() {
-		try {
-			initialize(levelFilename);
-		}
-		catch (FileNotFoundException e) {
-			System.err.println("File not found.");
-		}
-		catch (IllegalArgumentException e) {
-			System.err.println(e.getMessage());
-		}
 	}
 }

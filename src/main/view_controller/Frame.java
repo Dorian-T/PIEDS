@@ -21,17 +21,69 @@ import java.awt.Image;
 import java.awt.MediaTracker;
 
 
+/**
+ * Represents the frame of the game.
+ * The frame contains the panels for the cells and entities.
+ */
 public class Frame extends JFrame implements Observer {
+
+	// === Attributes ===
+
+	/**
+	 * The width of the frame.
+	 */
 	private int xSize;
+
+	/**
+	 * The height of the frame.
+	 */
 	private int ySize;
-	public static final int IMAGE_SIZE = 24;
-	public static final int IMAGE_FACTOR = 3;
+
+	/**
+	 * The panel for the cells.
+	 */
 	private CellPanel cellPanel;
+
+	/**
+	 * The panel for the entities.
+	 */
 	private EntityPanel entityPanel;
+
+	/**
+	 * The player of the game.
+	 */
 	private Player player;
+
+	/**
+	 * The size of the images.
+	 */
+	public static final int IMAGE_SIZE = 24;
+
+	/**
+	 * The factor by which the images are scaled.
+	 */
+	public static final int IMAGE_FACTOR = 3;
+
+	/**
+	 * The grid game containing the cells and entities.
+	 */
 	private GridGame gg;
+
+	/**
+	 * The counter for the animation.
+	 */
 	private static int animationCounter = 0;
 
+
+	// === Constructors ===
+
+	/**
+	 * Constructs a frame with the given grid game, width, and height.
+	 * 
+	 * @param gg the grid game to be displayed
+	 * @param width the width of the frame
+	 * @param height the height of the frame
+	 */
 	public Frame(GridGame gg, int width, int height) {
 		this.gg = gg;
 		this.xSize = width;
@@ -45,6 +97,15 @@ public class Frame extends JFrame implements Observer {
 		setVisible(true);
 	}
 
+
+	// === Methods ===
+
+	/**
+	 * Builds the frame with the given cell panel and entity panel.
+	 * 
+	 * @param gp the cell panel to be added to the frame
+	 * @param ep the entity panel to be added to the frame
+	 */
 	public void build(CellPanel gp, EntityPanel ep) {
 		setTitle("PIEDS");
 
@@ -68,6 +129,9 @@ public class Frame extends JFrame implements Observer {
 		pack();
 	}
 
+	/**
+	 * Adds a keyboard listener to the frame.
+	 */
 	private void addKeyboardListener() {
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -104,6 +168,16 @@ public class Frame extends JFrame implements Observer {
 		requestFocus();
 	}
 
+	/**
+	 * Updates the frame when the observable object is changed.
+	 * This method updates the doors and checks if the game is won or lost.
+	 * If the game is lost, the menu is opened and the frame is disposed.
+	 * If the game is won, the end screen is displayed.
+	 * The animation counter is incremented and the frame is repainted.
+	 * 
+	 * @param o the observable object
+	 * @param arg the object passed to the notifyObservers method
+	 */
 	@Override
 	public void update(java.util.Observable o, Object arg) {
 		gg.updateDoors();
