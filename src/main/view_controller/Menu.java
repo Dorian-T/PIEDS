@@ -3,7 +3,6 @@ package main.view_controller;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,10 +20,19 @@ import javax.swing.JPanel;
 
 import main.model.grid.GridGame;
 
+
+/**
+ * Represents the menu of the game.
+ * The menu contains buttons for selecting the levels.
+ */
 public class Menu extends JFrame {
 
 	// === Constructors ===
 
+	/**
+	 * Represents the menu of the game.
+	 * The menu contains buttons for selecting the levels.
+	 */
 	public Menu() {
 		try {
 			setTitle("PIEDS");
@@ -43,6 +51,10 @@ public class Menu extends JFrame {
 		}
 	}
 
+	/**
+	 * Adds the title to the menu.
+	 
+	 */
 	private void addTitle() {
 		// Create panel
 		JPanel titlePanel = new JPanel();
@@ -56,6 +68,9 @@ public class Menu extends JFrame {
 		titlePanel.add(titleLabel);
 	}
 
+	/**
+	 * Adds the buttons for selecting the levels to the menu.
+	 */
 	private void addLevelsButtons() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -79,6 +94,11 @@ public class Menu extends JFrame {
 
 	// === Methods ===
 
+	/**
+	 * Returns the list of levels available in the data/levels folder.
+	 * 
+	 * @return the list of levels
+	 */
 	private List<String> getLevels() {
 		List<String> levels = new ArrayList<String>();
 		try (Stream<Path> paths = Files.walk(Paths.get("data/levels"))) {

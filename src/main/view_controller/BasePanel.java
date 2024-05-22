@@ -27,7 +27,6 @@ public abstract class BasePanel extends JPanel {
 
 	// === Attributes ===
 
-
 	/**
 	 * The grid game containing the objects to be displayed on the panel.
 	 */

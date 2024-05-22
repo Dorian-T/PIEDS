@@ -4,15 +4,21 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.model.entity.Entity;
-import main.model.entity.Player;
 import main.model.grid.GridGame;
 import main.model.grid.Point;
 
-//Panneau pour afficher les entités
+
+/**
+ * Panel for displaying the entities.
+ */
 public class EntityPanel extends BasePanel {
 
 	// === Constructors ===
 	
+	/**
+	 * Represents a panel that displays an entity in a grid game.
+	 * Extends the base panel class and initializes it with the given grid game.
+	 */
 	public EntityPanel(GridGame gg) {
 		super(gg);
 	}
@@ -27,6 +33,11 @@ public class EntityPanel extends BasePanel {
 		return false;
 	}
 
+	/**
+	 * Overrides the paintComponent method to draw the entities on the panel.
+	 * 
+	 * @param g the Graphics object used for painting
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		BufferedImage subImg;
@@ -59,6 +70,13 @@ public class EntityPanel extends BasePanel {
 		}
 	}
 
+	/**
+	 * Returns the path of the image associated with the given entity.
+	 * If the entity does not have an image path, null is returned.
+	 *
+	 * @param param the entity object
+	 * @return the path of the image, or null if no image path is available
+	 */
 	@Override
 	protected String getPath(Object param) {
 		String path = ((Entity) param).getImagePath();

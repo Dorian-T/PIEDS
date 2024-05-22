@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import main.model.grid.GridGame;
 import main.model.grid.Point;
 import main.model.grid.cell.Cell;
-import main.model.grid.cell.Door;
 
 
 /**
