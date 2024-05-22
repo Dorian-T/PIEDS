@@ -76,6 +76,12 @@ public class Cell extends Observable {
 				else
 					res = new Flag(grid, Color.fromChar(str.charAt(1)));
 				break;
+			case 'r':
+				if(str.length() == 1)
+					res = new Rail(grid, 0);
+				else
+					res = new Rail(grid, ((int) str.charAt(1))-48 );
+				break;
 			case 'i':
 				res = new Ice(grid);
 				break;
@@ -197,4 +203,13 @@ public class Cell extends Observable {
 			return false;
 		}
 	}
+	public boolean canExit(boolean isPlayer, Direction dir) {
+		return true;
+	}
+	
+	public boolean canExit(Direction dir) {
+		return canExit(false, dir);
+	}
+
+	
 }

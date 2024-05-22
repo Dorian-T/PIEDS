@@ -153,7 +153,10 @@ public abstract class Entity extends Observable {
 	 * @return true if the entity can move, false otherwise
 	 */
 	public boolean moveTo(Direction dir) {
-		Cell newCell = cell.getCell(cell, dir);
-		return newCell.enter(this, dir);
+		if(cell.canExit(dir)) {
+			Cell newCell = cell.getCell(cell, dir);
+			return newCell.enter(this, dir);
+		}
+		return false;
 	}
 }
