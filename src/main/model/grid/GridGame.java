@@ -28,9 +28,13 @@ public class GridGame {
 	private List<Key> keys;
 	private String levelFilename;
 
-	public GridGame(String filename) throws FileNotFoundException, IllegalArgumentException {
+	public GridGame(String filename) {
 		levelFilename = filename;
-		initialize(filename);
+		try {
+			initialize(filename);
+		} catch (FileNotFoundException | IllegalArgumentException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

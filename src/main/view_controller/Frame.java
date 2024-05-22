@@ -1,7 +1,6 @@
 package main.view_controller;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
@@ -16,7 +15,6 @@ import javax.swing.JLayeredPane;
 import main.model.entity.Player;
 import main.model.grid.Direction;
 import main.model.grid.GridGame;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -134,7 +132,7 @@ public class Frame extends JFrame implements Observer {
 		// Load the image
 		Image win = new ImageIcon("data/assets/win.png").getImage();
 		win = win.getScaledInstance(Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR * 3, Frame.IMAGE_SIZE * Frame.IMAGE_FACTOR, Image.SCALE_DEFAULT);
-		
+
 		// Wait for the image to be loaded
 		MediaTracker tracker = new MediaTracker(new Component() {});
 		tracker.addImage(win, 0);
