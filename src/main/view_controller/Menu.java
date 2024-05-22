@@ -82,11 +82,13 @@ public class Menu extends JFrame {
 		panel.setBorder(new EmptyBorder(0, 60, 20, 0));
 		add(panel, BorderLayout.WEST);
 
-		List<String> levels = getLevels();
-		cleanText(levels);
+		List<String> levelPaths = getLevels();
+		List<String> levelNames = new ArrayList<>(levelPaths);
+		cleanText(levelNames);
 
-		for (String level : levels) {
-			JButton button = new JButton(level);
+		for (int i = 0; i < levelPaths.size(); i++) {
+			final int index = i;
+			JButton button = new JButton(levelNames.get(i));
 
 			// Style
 			button.setContentAreaFilled(false);
@@ -96,7 +98,7 @@ public class Menu extends JFrame {
 
 			// Listener
 			button.addActionListener(e -> {
-				GridGame g = new GridGame("data/levels/" + level);
+				GridGame g = new GridGame("data/levels/" + levelPaths.get(index));
 				Frame f = new Frame(g, g.getWidth(), g.getHeight());
 				g.getPlayer().addObserver(f);
 				f.setVisible(true);
