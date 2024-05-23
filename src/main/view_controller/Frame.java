@@ -73,7 +73,8 @@ public class Frame extends JFrame implements Observer {
 	 * The counter for the animation.
 	 */
 	private static int animationCounter = 0;
-
+	
+	private boolean won = false;
 
 	// === Constructors ===
 
@@ -181,15 +182,19 @@ public class Frame extends JFrame implements Observer {
 	 */
 	@Override
 	public void update(java.util.Observable o, Object arg) {
+		if(won) {
+			showEndScreen();
+		}
 		gg.updateDoors();
 		if(gg.isLoose()) {
 			App.openMenu();
 			dispose();
 		}
 		else if(gg.isWin()) {
-			showEndScreen();
+			won = true;
 		}
 		animationCounter = (animationCounter + 1) % 3;
+		
 		repaint();
 	}
 
@@ -209,7 +214,7 @@ public class Frame extends JFrame implements Observer {
 	 * It then sleeps for certain durations and finally disposes the frame.
 	 */
 	private void showEndScreen() {
-		repaint();
+		
 
 		// Load the image
 		Image win = new ImageIcon("data/assets/win.png").getImage();
