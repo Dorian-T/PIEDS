@@ -82,10 +82,4 @@ public class Player extends Entity {
 		}
 		return false;
 	}
-	
-	public boolean stay() {
-		setChanged();
-		notifyObservers();
-		return true;
-	}
 }
