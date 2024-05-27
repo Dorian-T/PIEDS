@@ -18,12 +18,7 @@ public class Flag extends Cell {
 	/**
 	 * The color of the button
 	 */
-	Color color;
-
-	/**
-	 * True if the button is activated, false otherwise
-	 */
-	boolean activated;
+	private Color color;
 
 	
 	// === Constructors ===
@@ -37,7 +32,6 @@ public class Flag extends Cell {
 	public Flag(GridGame grid, Color color) {
 		super(grid);
 		this.color = color;
-		activated = false;
 		imagePath = "flag.png";
 	}
 

@@ -15,19 +15,19 @@ import main.model.grid.GridGame;
  * 
  * @see Observable
  */
-public class Cell extends Observable {
+public abstract class Cell extends Observable {
 
 	// === Variables ===
 
 	/**
 	 * The grid where the cell is.
 	 */
-	GridGame grid;
+	protected GridGame grid;
 
 	/**
 	 * The entity that is in the cell.
 	 */
-	Entity occupant;
+	protected Entity occupant;
 
 	/**
 	 * The path of the image of an empty cell.
@@ -47,7 +47,7 @@ public class Cell extends Observable {
 	 *
 	 * @param grid the grid where the cell is
 	 */
-	public Cell(GridGame grid) {
+	protected Cell(GridGame grid) {
 		this.grid = grid;
 		occupant = null;
 		version = 0;

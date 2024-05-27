@@ -51,7 +51,7 @@ Ainsi, nous avons pu reproduire 11 des 14 niveaux tutoriels du site [sokobanonli
 
 Les caisses, drapeaux et téléporteurs sont disponibles en six couleurs différentes afin de pouvoir augmenter la complexité des niveaux.
 
-<!-- TODO: diagramme de classe -->
+![diagramme de classes](data/img/classDiagram.svg)
 
 ## II. Extensions
 

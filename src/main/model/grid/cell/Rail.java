@@ -14,17 +14,20 @@ import main.model.grid.GridGame;
  */
 public class Rail extends Cell {
 
-	// === Constructors ===
+	// === Variables ===
 
 	/**
 	 * Represents the directions in which a rail cell has openings.
 	 */
 	private Direction[] openings;
-
+	
 	/**
 	 * The type of the rail.
 	 */
 	private int type;
+
+
+	// === Constructors ===
 
 	/**
 	 * Constructor of the class Wall
@@ -182,5 +185,4 @@ public class Rail extends Cell {
 	public int getVersion() {
 		return type;
 	}
-
 }

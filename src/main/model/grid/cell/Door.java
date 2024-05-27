@@ -18,7 +18,7 @@ public class Door extends Cell {
 	/**
 	 * True if the door is open, false otherwise
 	 */
-	boolean open;
+	private boolean open;
 
 
 	// === Constructors ===

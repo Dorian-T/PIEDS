@@ -14,7 +14,7 @@ public class Box extends Entity {
 
 	// === Variables ===
 
-	Color color;
+	private Color color;
 
 
 	// === Constructors ===
