@@ -62,19 +62,19 @@ Le fichier doit respecter le format suivant :
 
 ```plaintext
 taille_x taille_y
-cell_1_1 cell_1_2 ... cell_1_n
-cell_2_1 cell_2_2 ... cell_2_n
+cell_1_1 cell_1_2 ... cell_x_1
+cell_2_1 cell_2_2 ... cell_x_2
 ...
-cell_m_1 cell_m_2 ... cell_m_n
-entité_1_1 entité_1_1 ... entité_1_n
-entité_2_1 entité_2_2 ... entité_2_n
+cell_1_y cell_2_y ... cell_x_y
+entité_1_1 entité_1_1 ... entité_x_1
+entité_2_1 entité_2_2 ... entité_x_2
 ...
-entité_k_1 entité_k_2 ... entité_m_n
+entité_1_y entité_2_y ... entité_x_y
 ```
 
 La première ligne contient les dimensions du niveau.\
 Les lignes suivantes forment une matrice des cellules du niveau. Chaque cellule est représentée par un caractère plus éventuellement une couleur représentée par un chiffre.\
-Les entités sont listées à la suite des cellules. Chaque entité est représentée par un caractère plus éventuellement une couleur représentée par un chiffre.
+Les entités sont listées à la suite des cellules. Chaque entité est représentée par un caractère plus éventuellement une couleur ou une variante (pour les rails ou le joueur) représentée par un chiffre.
 
 | Caractère | Cellule | | Caractère | Entité | | Caractère | Couleur |
 | :-: | :-- | - | :-: | :-- | - | :-: | :-- |
@@ -101,9 +101,9 @@ Il est possible de réinitialiser le niveau en appuyant sur la touche `R`. Cela 
 
 ### II.4 Finitions graphiques
 
-Nous n'avons pas réaliser nous même les assets, ils proviennent du jeu Baba Is You.
+Nous avons dessiné nos propres assets mais afin d'obtenir un meilleur niveau de finition, nous les avons remplacés par des assets provenant du jeu Baba Is You.
 
-Cela nous a permis de soigner l'aspect graphique du jeu. Nous avons ainsi pu ajouter des animations sur les déplacements et les objets.\
+Cela nous a permis de soigner l'aspect graphique du jeu. Nous avons ainsi pu ajouter des animations sur les déplacements et les objets.
 
 Afin d'optimiser les performances, nous ne chargeons les images qu'une seule fois par niveau et nous les stockons dans une `HashMap`. De plus, nous utilisons des `BufferedImage` pour les animations. Cela permet de charger toutes les versions d'un même élément une seule et de zoomer au bon endroit pour afficher la bonne.
 
@@ -118,3 +118,13 @@ cd src/; javadoc -encoding UTF-8 -d ../doc/javadoc -subpackages main; cd ..
 ```
 
 On peut ensuite la retrouver dans le dossier `doc/javadoc/`.
+
+## III. Améliorations possibles
+
+Si nous avions eu plus de temps, nous aurions pu implémenter les fonctionnalités suivantes :
+
+- [ ] Fin de l'implémentation des fonctionnalités des niveaux tutoriels
+- [ ] Editeur de niveau
+- [ ] Chronomètre, compteur de déplacements et leaderboard
+- [ ] Musique et effets sonores
+- [ ] Tests unitaires
